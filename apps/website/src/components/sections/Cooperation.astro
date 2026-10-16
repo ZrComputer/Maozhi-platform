@@ -1,0 +1,136 @@
+
+---
+import SectionShell from "../common/SectionShell.astro";
+import { site } from "../../data/site";
+---
+
+<SectionShell
+  id="cooperation"
+  title="合作模式"
+  eyebrow="COOPERATION"
+>
+
+  <div class="cooperation-grid">
+
+    {site.cooperation.map((item, index) => (
+      <article class="cooperation-card">
+
+        <div class="cooperation-number">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div class="cooperation-icon" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div class="cooperation-info">
+
+          {item.title ? (
+            <h3>{item.title}</h3>
+          ) : (
+            <span class="placeholder-line large medium"></span>
+          )}
+
+          {item.description ? (
+            <p>{item.description}</p>
+          ) : (
+            <div class="placeholder-stack">
+              <span class="placeholder-line long"></span>
+              <span class="placeholder-line medium"></span>
+            </div>
+          )}
+
+        </div>
+
+      </article>
+    ))}
+
+  </div>
+
+</SectionShell>
+
+<style>
+  .cooperation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .cooperation-card {
+    position: relative;
+
+    min-height: 300px;
+    padding: 32px 26px;
+
+    background: #ffffff;
+    border: 1px solid #e1eaf4;
+    border-radius: 10px;
+
+    box-shadow: 0 8px 28px rgba(7,26,50,0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .cooperation-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .cooperation-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #e6eef8;
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+
+  .cooperation-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #eaf5ff;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .cooperation-icon span {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #2389e9;
+    border-radius: 5px;
+    transform: rotate(45deg);
+  }
+
+  .cooperation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cooperation-info h3 {
+    margin: 0;
+    font-size: 19px;
+    color: #102b49;
+  }
+
+  .cooperation-info p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #718398;
+  }
+
+  @media (max-width: 900px) {
+    .cooperation-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 540px) {
+    .cooperation-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

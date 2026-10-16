@@ -1,0 +1,111 @@
+---
+const {
+  id,
+  title,
+  eyebrow = "",
+  description = "",
+  alternate = false
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["section-shell", { alternate }]}
+>
+  <div class="container">
+
+    <div class="section-heading">
+
+      {eyebrow && (
+        <span class="section-eyebrow">
+          {eyebrow}
+        </span>
+      )}
+
+      <h2>{title}</h2>
+
+      {description && (
+        <p>{description}</p>
+      )}
+
+      <span class="heading-line"></span>
+
+    </div>
+
+    <div class="section-body">
+      <slot />
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .section-shell {
+    padding: 100px 0 110px;
+    background: #ffffff;
+  }
+
+  .section-shell.alternate {
+    background: #f4f7fb;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .section-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+
+    color: #2389e9;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+
+    color: #102b49;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .section-heading p {
+    max-width: 720px;
+    margin: 18px auto 0;
+    color: #718398;
+    font-size: 15px;
+  }
+
+  .heading-line {
+    display: block;
+
+    width: 48px;
+    height: 3px;
+
+    margin: 22px auto 0;
+    border-radius: 3px;
+    background: #2389e9;
+  }
+
+  .section-body {
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .section-shell {
+      padding: 72px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 36px;
+    }
+
+    .section-heading h2 {
+      font-size: 27px;
+    }
+  }
+</style>

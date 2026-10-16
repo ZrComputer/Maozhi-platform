@@ -1,0 +1,179 @@
+
+---
+import SectionShell from "../common/SectionShell.astro";
+import { site } from "../../data/site";
+---
+
+<SectionShell
+  id="solutions"
+  title="行业解决方案"
+  eyebrow="SOLUTIONS"
+  alternate
+>
+
+  <div class="solutions-grid">
+
+    {site.solutions.map((item, index) => (
+      <article class="solution-card">
+
+        <div class="solution-background" aria-hidden="true">
+          <div class="solution-circle"></div>
+          <div class="solution-circle small"></div>
+        </div>
+
+        <div class="solution-content">
+
+          <span class="solution-index">
+            SOLUTION {String(index + 1).padStart(2, "0")}
+          </span>
+
+          <div class="solution-text">
+
+            {item.title ? (
+              <h3>{item.title}</h3>
+            ) : (
+              <span class="placeholder-line dark large medium"></span>
+            )}
+
+            {item.description ? (
+              <p>{item.description}</p>
+            ) : (
+              <div class="placeholder-stack">
+                <span class="placeholder-line dark long"></span>
+                <span class="placeholder-line dark"></span>
+                <span class="placeholder-line dark medium"></span>
+              </div>
+            )}
+
+          </div>
+
+          <div class="solution-decoration">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+        </div>
+
+      </article>
+    ))}
+
+  </div>
+
+</SectionShell>
+
+<style>
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .solution-card {
+    position: relative;
+    min-height: 410px;
+    overflow: hidden;
+
+    border: 1px solid rgba(66,142,211,0.25);
+    border-radius: 12px;
+
+    background:
+      radial-gradient(
+        circle at 85% 22%,
+        rgba(52,146,228,0.2),
+        transparent 45%
+      ),
+      linear-gradient(
+        135deg,
+        #071a32 0%,
+        #104274 100%
+      );
+
+    color: #ffffff;
+    transition: transform 0.3s ease;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .solution-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .solution-circle {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+
+    right: -125px;
+    top: -95px;
+
+    border: 1px solid rgba(117,188,245,0.24);
+    border-radius: 50%;
+  }
+
+  .solution-circle.small {
+    width: 250px;
+    height: 250px;
+    right: -65px;
+    top: -35px;
+  }
+
+  .solution-content {
+    position: relative;
+    z-index: 1;
+
+    min-height: 410px;
+    padding: 42px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .solution-index {
+    color: #7bbdf5;
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .solution-text {
+    margin-top: auto;
+    margin-bottom: 45px;
+    max-width: 390px;
+  }
+
+  .solution-text h3 {
+    font-size: 26px;
+    margin-bottom: 22px;
+  }
+
+  .solution-text p {
+    color: #c4d8eb;
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .solution-decoration {
+    display: flex;
+    gap: 8px;
+  }
+
+  .solution-decoration span {
+    width: 24px;
+    height: 3px;
+    background: #57c7ff;
+  }
+
+  .solution-decoration span:not(:first-child) {
+    background: rgba(87,199,255,0.25);
+  }
+
+  @media (max-width: 800px) {
+    .solutions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,281 @@
+
+---
+import SectionShell from "../common/SectionShell.astro";
+import { site } from "../../data/site";
+
+const contactItems = [
+  {
+    label: "联系电话",
+    value: site.contact.phone
+  },
+  {
+    label: "电子邮箱",
+    value: site.contact.email
+  },
+  {
+    label: "联系地址",
+    value: site.contact.address
+  },
+  {
+    label: "微信公众号",
+    value: site.contact.wechat
+  }
+];
+---
+
+<SectionShell
+  id="contact"
+  title="联系我们"
+  eyebrow="CONTACT US"
+  alternate
+>
+
+  <div class="contact-grid">
+
+    <!-- 左侧联系信息 -->
+    <div class="contact-panel">
+
+      <h3>联系信息</h3>
+
+      <div class="contact-list">
+
+        {contactItems.map((item) => (
+          <div class="contact-item">
+
+            <div class="contact-icon" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <div class="contact-info">
+
+              <span class="contact-label">
+                {item.label}
+              </span>
+
+              {item.value ? (
+                <strong>{item.value}</strong>
+              ) : (
+                <span class="placeholder-line medium"></span>
+              )}
+
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+
+    <!-- 右侧企业视觉区 -->
+    <div class="contact-visual">
+
+      <div class="visual-circle circle-one"></div>
+      <div class="visual-circle circle-two"></div>
+
+      <div class="contact-visual-content">
+
+        <span class="visual-eyebrow">
+          {site.englishName}
+        </span>
+
+        <div class="visual-placeholder" aria-hidden="true">
+          <span class="placeholder-line dark"></span>
+          <span class="placeholder-line dark medium"></span>
+        </div>
+
+        <div class="visual-line"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</SectionShell>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .contact-panel {
+    min-height: 460px;
+    padding: 45px;
+
+    background: #ffffff;
+    border: 1px solid #e1eaf4;
+    border-radius: 12px;
+
+    box-shadow: 0 10px 30px rgba(7,26,50,0.04);
+  }
+
+  .contact-panel h3 {
+    font-size: 25px;
+    color: #102b49;
+    margin-bottom: 40px;
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ff;
+    border-radius: 10px;
+  }
+
+  .contact-icon span {
+    display: block;
+    width: 17px;
+    height: 17px;
+
+    border: 2px solid #2389e9;
+    border-radius: 4px;
+    transform: rotate(45deg);
+  }
+
+  .contact-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-label {
+    color: #718398;
+    font-size: 13px;
+  }
+
+  .contact-info strong {
+    color: #102b49;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  /* 深蓝视觉面板 */
+
+  .contact-visual {
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+
+    color: #ffffff;
+
+    border-radius: 12px;
+
+    background:
+      radial-gradient(
+        circle at 75% 35%,
+        rgba(42,149,235,0.24),
+        transparent 40%
+      ),
+      linear-gradient(
+        135deg,
+        #071a32,
+        #104577
+      );
+  }
+
+  .visual-circle {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(112,196,255,0.23);
+  }
+
+  .circle-one {
+    right: -100px;
+    top: -90px;
+  }
+
+  .circle-two {
+    right: -35px;
+    top: -25px;
+
+    width: 220px;
+    height: 220px;
+  }
+
+  .contact-visual-content {
+    position: relative;
+    z-index: 1;
+
+    height: 100%;
+    min-height: 460px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 55px;
+  }
+
+  .visual-eyebrow {
+    color: #57c7ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+
+  .visual-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 340px;
+  }
+
+  .visual-placeholder .placeholder-line {
+    height: 25px;
+  }
+
+  .visual-line {
+    width: 48px;
+    height: 3px;
+    background: #57c7ff;
+    margin-top: 45px;
+  }
+
+  @media (max-width: 800px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-panel,
+    .contact-visual {
+      min-height: 380px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .contact-panel {
+      padding: 28px;
+    }
+
+    .contact-visual-content {
+      padding: 32px;
+    }
+  }
+</style>

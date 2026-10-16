@@ -1,0 +1,63 @@
+
+---
+/**
+ * 茂之科技官方网站
+ *
+ * 首页模块组装文件
+ * 所有页面模块均独立开发和维护
+ */
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// 公共布局
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+
+// 首页模块
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Services from "../components/sections/Services.astro";
+import Solutions from "../components/sections/Solutions.astro";
+import Cases from "../components/sections/Cases.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import Cooperation from "../components/sections/Cooperation.astro";
+import Contact from "../components/sections/Contact.astro";
+---
+
+<BaseLayout title="茂之科技 | 官方网站">
+
+  <!-- 全站导航栏 -->
+  <Header />
+
+  <main>
+
+    <!-- 01 首页首屏 -->
+    <Hero />
+
+    <!-- 02 关于我们 -->
+    <About />
+
+    <!-- 03 核心业务与服务 -->
+    <Services />
+
+    <!-- 04 行业解决方案 -->
+    <Solutions />
+
+    <!-- 05 项目案例 -->
+    <Cases />
+
+    <!-- 06 常见问题 -->
+    <FAQ />
+
+    <!-- 07 合作模式 -->
+    <Cooperation />
+
+    <!-- 08 联系我们 -->
+    <Contact />
+
+  </main>
+
+  <!-- 全站页脚 -->
+  <Footer />
+
+</BaseLayout>

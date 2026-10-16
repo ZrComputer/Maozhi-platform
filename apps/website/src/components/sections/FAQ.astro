@@ -1,0 +1,157 @@
+
+---
+import SectionShell from "../common/SectionShell.astro";
+import { site } from "../../data/site";
+---
+
+<SectionShell
+  id="faq"
+  title="常见问题"
+  eyebrow="FREQUENTLY ASKED QUESTIONS"
+  alternate
+>
+
+  <div class="faq-container">
+
+    {site.faqs.map((item, index) => (
+      <details class="faq-item">
+
+        <summary>
+
+          <span class="faq-number">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+
+          <span class="faq-question">
+            {item.question || "问题内容待补充"}
+          </span>
+
+          <span class="faq-symbol" aria-hidden="true"></span>
+
+        </summary>
+
+        <div class="faq-answer">
+
+          {item.answer ? (
+            <p>{item.answer}</p>
+          ) : (
+            <div class="placeholder-stack">
+              <span class="placeholder-line long"></span>
+              <span class="placeholder-line medium"></span>
+            </div>
+          )}
+
+        </div>
+
+      </details>
+    ))}
+
+  </div>
+
+</SectionShell>
+
+<style>
+  .faq-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid #e1eaf4;
+    border-radius: 9px;
+    overflow: hidden;
+
+    transition: border-color 0.25s ease;
+  }
+
+  .faq-item[open] {
+    border-color: #a5cffa;
+  }
+
+  .faq-item summary {
+    list-style: none;
+
+    min-height: 84px;
+    padding: 20px 28px;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    cursor: pointer;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-number {
+    color: #2389e9;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .faq-question {
+    flex: 1;
+    color: #102b49;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .faq-symbol {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .faq-symbol::before,
+  .faq-symbol::after {
+    content: "";
+    position: absolute;
+    background: #2389e9;
+  }
+
+  .faq-symbol::before {
+    width: 14px;
+    height: 2px;
+    top: 11px;
+    left: 5px;
+  }
+
+  .faq-symbol::after {
+    width: 2px;
+    height: 14px;
+    top: 5px;
+    left: 11px;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-symbol::after {
+    transform: rotate(90deg);
+  }
+
+  .faq-answer {
+    padding: 0 28px 28px 70px;
+    color: #718398;
+  }
+
+  .faq-answer p {
+    margin: 0;
+    line-height: 2;
+  }
+
+  @media (max-width: 620px) {
+    .faq-item summary {
+      padding: 18px;
+    }
+
+    .faq-answer {
+      padding: 0 18px 24px;
+    }
+  }
+</style>

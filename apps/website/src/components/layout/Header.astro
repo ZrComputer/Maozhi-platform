@@ -1,0 +1,322 @@
+
+---
+import { site } from "../../data/site";
+
+const navigation = [
+  { label: "首页", href: "#home" },
+  { label: "关于我们", href: "#about" },
+  { label: "业务服务", href: "#services" },
+  { label: "解决方案", href: "#solutions" },
+  { label: "项目案例", href: "#cases" },
+  { label: "常见问题", href: "#faq" },
+  { label: "合作模式", href: "#cooperation" },
+  { label: "联系我们", href: "#contact" }
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <!-- 企业品牌 -->
+    <a href="#home" class="brand">
+
+      <img
+        src="/assets/images/logo.png"
+        alt="茂之科技 Logo"
+        width="100"
+        height="53"
+      />
+
+      <div class="brand-text">
+        <strong>{site.name}</strong>
+        <small>{site.englishName}</small>
+      </div>
+
+    </a>
+
+    <!-- 移动端菜单按钮 -->
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="展开导航菜单"
+      aria-controls="main-nav"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- 导航菜单 -->
+    <nav id="main-nav" class="nav-menu" aria-label="主导航">
+      {navigation.map((item) => (
+        <a href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- 内部系统未来接入位置 -->
+    <span class="staff-entry">
+      员工入口
+    </span>
+
+  </div>
+</header>
+
+<style>
+  .site-header {
+    height: var(--header-height);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: #071a32;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    color: #ffffff;
+  }
+
+  .brand img {
+    display: block;
+    width: 100px;
+    height: 53px;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    white-space: nowrap;
+  }
+
+  .brand-text strong {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .brand-text small {
+    color: #a9bacf;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav-menu a {
+    position: relative;
+    color: #d5dfec;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .nav-menu a:hover {
+    color: #57c7ff;
+  }
+
+  .nav-menu a.active {
+  color: #57c7ff;
+  }
+
+  .nav-menu a::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #57c7ff;
+    transition: width 0.25s ease;
+  }
+
+  .nav-menu a:hover::after,
+  .nav-menu a.active::after {
+    width: 100%;
+  }
+
+  .staff-entry {
+    flex-shrink: 0;
+
+    border: 1px solid #365675;
+    border-radius: 5px;
+    padding: 9px 14px;
+
+    color: #9cb6cf;
+    font-size: 12px;
+  }
+
+  .menu-toggle {
+    display: none;
+    width: 36px;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    background: #ffffff;
+    margin: 5px 0;
+  }
+
+  @media (max-width: 900px) {
+    .nav-menu {
+      gap: 16px;
+    }
+
+    .brand img {
+      width: 78px;
+      height: 46px;
+    }
+
+    .brand-text strong {
+      font-size: 17px;
+    }
+
+    .brand-text small {
+      font-size: 9px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .menu-toggle {
+      display: block;
+      margin-left: auto;
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+
+      padding: 20px 24px;
+      background: #071a32;
+      border-top: 1px solid #244365;
+
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .nav-menu.is-open {
+      display: flex;
+    }
+
+    .staff-entry {
+      display: none;
+    }
+  }  
+</style>
+
+<script>
+  const menuButton =
+    document.querySelector<HTMLButtonElement>(".menu-toggle");
+
+  const mainNav =
+    document.querySelector<HTMLElement>("#main-nav");
+
+  if (menuButton && mainNav) {
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "收起导航菜单" : "展开导航菜单"
+      );
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "展开导航菜单");
+      });
+    });
+  }
+
+  const navLinks = document.querySelectorAll(
+    ".nav-menu a[href^='#']"
+  );
+
+  const sections = Array.from(navLinks)
+    .map((link) => {
+      const id = link.getAttribute("href");
+      return id ? document.querySelector(id) : null;
+    })
+    .filter((section) => section !== null);
+
+  let scrollTicking = false;
+
+  function updateActiveNavigation() {
+    const position = window.scrollY + 180;
+
+    let currentId = "home";
+
+    sections.forEach((section) => {
+      if (section.offsetTop <= position) {
+        currentId = section.id;
+      }
+    });
+
+    navLinks.forEach((link) => {
+      const active =
+        link.getAttribute("href") === `#${currentId}`;
+
+      link.classList.toggle("active", active);
+
+      if (active) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    scrollTicking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(updateActiveNavigation);
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", updateActiveNavigation);
+
+  updateActiveNavigation();
+</script>

@@ -1,0 +1,327 @@
+
+---
+import { site } from "../../data/site";
+---
+
+<section id="home" class="hero">
+
+  <div class="container hero-container">
+
+    <!-- 左侧宣传内容 -->
+    <div class="hero-content">
+
+      <div class="hero-eyebrow">
+        {site.hero.eyebrow || site.englishName}
+      </div>
+
+      {site.hero.headline ? (
+        <h1 class="hero-title">
+          {site.hero.headline}
+        </h1>
+      ) : (
+        <>
+          <h1 class="visually-hidden">
+            {site.name}官方网站
+          </h1>
+
+          <div class="hero-title-placeholder" aria-hidden="true">
+            <span class="placeholder-line dark"></span>
+            <span class="placeholder-line dark medium"></span>
+          </div>
+        </>
+      )}
+
+      {site.hero.summary ? (
+        <p class="hero-description">
+          {site.hero.summary}
+        </p>
+      ) : (
+        <div class="hero-description-placeholder" aria-hidden="true">
+          <span class="placeholder-line dark long"></span>
+          <span class="placeholder-line dark"></span>
+          <span class="placeholder-line dark medium"></span>
+        </div>
+      )}
+
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary">
+          了解业务服务
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a href="#about" class="btn btn-outline">
+          关于我们
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 右侧科技动画 -->
+    <div class="hero-visual" aria-hidden="true">
+
+      <div class="tech-glow"></div>
+
+      <div class="tech-ring ring-outer"></div>
+      <div class="tech-ring ring-middle"></div>
+      <div class="tech-ring ring-inner"></div>
+
+      <div class="tech-core">
+        <div class="core-inner"></div>
+      </div>
+
+      <span class="orbit-point point-one"></span>
+      <span class="orbit-point point-two"></span>
+
+    </div>
+
+  </div>
+
+
+</section>
+
+<style>
+  .hero {
+    position: relative;
+
+    min-height: 680px;
+    height: calc(100vh - 86px);
+    max-height: 960px;
+
+    overflow: hidden;
+    color: #ffffff;
+
+    background:
+      radial-gradient(
+        circle at 75% 45%,
+        rgba(15,113,211,0.35),
+        transparent 36%
+      ),
+      linear-gradient(
+        115deg,
+        #06172e 0%,
+        #092b52 55%,
+        #071a35 100%
+      );
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+      linear-gradient(
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px
+      );
+
+    background-size: 70px 70px;
+    pointer-events: none;
+  }
+
+  .hero-container {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 610px;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 30px;
+
+    color: #57c7ff;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 4vw, 58px);
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 28px;
+  }
+
+  .hero-title-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    max-width: 500px;
+    margin-bottom: 38px;
+  }
+
+  .hero-title-placeholder .placeholder-line {
+    height: 44px;
+    border-radius: 8px;
+  }
+
+  .hero-description {
+    max-width: 540px;
+
+    font-size: 16px;
+    line-height: 2.2;
+    color: #b4c6db;
+
+    margin-bottom: 38px;
+  }
+
+  .hero-description-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    max-width: 500px;
+    margin-bottom: 45px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* 科技图形 */
+
+  .hero-visual {
+    position: relative;
+    width: min(100%, 440px);
+    aspect-ratio: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .tech-glow {
+    position: absolute;
+    width: 95%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    background: radial-gradient(
+      circle,
+      rgba(27,132,231,0.18),
+      transparent 68%
+    );
+  }
+
+  .tech-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(75,174,255,0.38);
+  }
+
+  .ring-outer {
+    width: 96%;
+    aspect-ratio: 1;
+    border-style: dashed;
+    animation: rotate 55s linear infinite;
+  }
+
+  .ring-middle {
+    width: 76%;
+    aspect-ratio: 1;
+    border-width: 2px;
+    box-shadow: 0 0 40px rgba(25,141,255,0.12);
+  }
+
+  .ring-inner {
+    width: 57%;
+    aspect-ratio: 1;
+    border-color: rgba(110,199,255,0.6);
+    animation: rotate 35s linear infinite reverse;
+  }
+
+  .tech-core {
+    position: relative;
+    width: 40%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(
+      circle,
+      #1689ed 0%,
+      #0b3d7d 65%,
+      #09214b 100%
+    );
+
+    box-shadow:
+      0 0 60px rgba(30,150,255,0.3),
+      inset 0 0 28px rgba(255,255,255,0.08);
+  }
+
+  .core-inner {
+    width: 54%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(166,223,255,0.7);
+    border-radius: 50%;
+    box-shadow: inset 0 0 25px rgba(84,188,255,0.2);
+  }
+
+  .orbit-point {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #57c7ff;
+    box-shadow: 0 0 15px #57c7ff;
+  }
+
+  .point-one {
+    top: 13%;
+    left: 20%;
+  }
+
+  .point-two {
+    bottom: 18%;
+    right: 12%;
+  }
+
+
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding-top: 60px;
+      padding-bottom: 80px;
+    }
+
+    .hero {
+      height: auto;
+      max-height: none;
+    }
+
+    .hero-visual {
+      width: min(70vw, 320px);
+    }
+
+    .hero-title-placeholder .placeholder-line {
+      height: 30px;
+    }
+  }
+</style>

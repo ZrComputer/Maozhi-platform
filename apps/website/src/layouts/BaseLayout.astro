@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+
+import { site } from "../data/site";
+
+const {
+  title = `${site.name} | 官方网站`
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta name="theme-color" content="#071a32" />
+
+    {site.seoDescription && (
+      <meta
+        name="description"
+        content={site.seoDescription}
+      />
+    )}
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+
+</html>
