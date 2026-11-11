@@ -1,0 +1,1357 @@
+---
+import { site } from "../../data/site";
+
+const caseGroups = site.caseGroups;
+
+const totalCases = caseGroups.reduce(
+  (total, group) => total + group.items.length,
+  0
+);
+---
+
+<section
+  id="cases"
+  class="cases"
+  aria-labelledby="cases-heading"
+  data-case-switcher
+>
+  <div class="cases-decoration" aria-hidden="true">
+    <div class="cases-grid-lines"></div>
+    <div class="cases-glow glow-left"></div>
+    <div class="cases-glow glow-right"></div>
+  </div>
+
+  <div class="container cases-inner">
+    <header class="cases-header">
+      <div class="cases-heading">
+        <p class="section-eyebrow">
+          <span></span>
+          PROJECT CASES
+        </p>
+
+        <h2 id="cases-heading">
+          用真实项目
+          <span>验证方案落地能力</span>
+        </h2>
+      </div>
+
+      <div class="cases-introduction">
+        <p>
+          覆盖传统智能化、数字新兴业务和算电协同三大方向，
+          持续沉淀项目实施、系统交付及现场服务经验。
+        </p>
+
+        <div class="cases-count">
+          <strong>
+            {String(totalCases).padStart(2, "0")}
+          </strong>
+
+          <span>
+            项案例<br />实践
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="case-tabs"
+      role="tablist"
+      aria-label="项目案例分类"
+    >
+      {
+        caseGroups.map((group, groupIndex) => (
+          <button
+            type="button"
+            id={`case-tab-${group.id}`}
+            class:list={[
+              "case-tab",
+              {
+                "is-active": groupIndex === 0
+              }
+            ]}
+            role="tab"
+            aria-selected={
+              groupIndex === 0
+                ? "true"
+                : "false"
+            }
+            aria-controls={`case-panel-${group.id}`}
+            tabindex={groupIndex === 0 ? 0 : -1}
+            data-case-tab={group.id}
+          >
+            <span class="case-tab-number">
+              {String(groupIndex + 1).padStart(2, "0")}
+            </span>
+
+            <span>{group.label}</span>
+
+            <small>
+              {String(group.items.length).padStart(2, "0")}
+            </small>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="case-panels">
+      {
+        caseGroups.map((group, groupIndex) => (
+          <div
+            id={`case-panel-${group.id}`}
+            class="case-panel"
+            role="tabpanel"
+            aria-labelledby={`case-tab-${group.id}`}
+            data-case-panel={group.id}
+            data-layout={
+              group.id === "integration"
+                ? "featured"
+                : "pair"
+            }
+            hidden={groupIndex !== 0}
+          >
+            <div class="case-group-introduction">
+              <p class="case-group-eyebrow">
+                {group.eyebrow}
+              </p>
+
+              <p>{group.description}</p>
+            </div>
+
+            <div class="cases-grid">
+              {
+                group.items.map((project) => (
+                  <article class="case-card">
+                    <figure class="case-media">
+                      <img
+                        src={project.image}
+                        alt={project.imageAlt}
+                        width="1536"
+                        height="1024"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+
+                    <div
+                      class="case-overlay"
+                      aria-hidden="true"
+                    ></div>
+
+                    <div class="case-top">
+                      <span class="case-number">
+                        {project.number}
+                      </span>
+
+                      <span class="case-category">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    <div class="case-content">
+                      <h3>{project.title}</h3>
+
+                      <p class="case-summary">
+                        {project.summary}
+                      </p>
+
+                      <ul class="case-highlights">
+                        {
+                          project.highlights.map(
+                            (highlight) => (
+                              <li>{highlight}</li>
+                            )
+                          )
+                        }
+                      </ul>
+
+                      <a
+                        class="case-link"
+                        href="#contact"
+                        aria-label={`咨询${project.title}`}
+                      >
+                        <span>查看项目方案</span>
+
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.9"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="m13 6 6 6-6 6"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="cases-footer">
+      <div>
+        <span
+          class="footer-mark"
+          aria-hidden="true"
+        ></span>
+
+        <p>
+          更多项目资料将持续补充，页面展示内容以可核实的项目资料为准。
+        </p>
+      </div>
+
+      <a href="#contact">
+        咨询同类项目
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const caseSwitchers =
+    document.querySelectorAll<HTMLElement>(
+      "[data-case-switcher]"
+    );
+
+  const prefersReducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+  const supportsHover =
+    window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+  const autoSwitchDelay = 4500;
+
+  caseSwitchers.forEach((switcher) => {
+    const tabs = Array.from(
+      switcher.querySelectorAll<HTMLButtonElement>(
+        "[data-case-tab]"
+      )
+    );
+
+    const panels = Array.from(
+      switcher.querySelectorAll<HTMLElement>(
+        "[data-case-panel]"
+      )
+    );
+
+    const tabList =
+      switcher.querySelector<HTMLElement>(
+        ".case-tabs"
+      );
+
+    let autoSwitchTimer:
+      number | undefined;
+
+    let isTabListVisible = false;
+    let isPointerPaused = false;
+    let isFocusPaused = false;
+
+    const activateTab = (
+      targetTab: HTMLButtonElement,
+      shouldFocus = false
+    ) => {
+      const targetId =
+        targetTab.dataset.caseTab;
+
+      tabs.forEach((tab) => {
+        const isActive =
+          tab.dataset.caseTab === targetId;
+
+        tab.classList.toggle(
+          "is-active",
+          isActive
+        );
+
+        tab.setAttribute(
+          "aria-selected",
+          String(isActive)
+        );
+
+        tab.tabIndex = isActive ? 0 : -1;
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden =
+          panel.dataset.casePanel !== targetId;
+      });
+
+      if (shouldFocus) {
+        targetTab.focus();
+      }
+
+      if (
+        window.innerWidth <= 720 &&
+        !shouldFocus
+      ) {
+        targetTab.scrollIntoView({
+          behavior: prefersReducedMotion
+            ? "auto"
+            : "smooth",
+          block: "nearest",
+          inline: "center"
+        });
+      }
+    };
+
+    const stopAutoSwitch = () => {
+      if (autoSwitchTimer !== undefined) {
+        window.clearInterval(
+          autoSwitchTimer
+        );
+
+        autoSwitchTimer = undefined;
+      }
+    };
+
+    const switchToNextTab = () => {
+      const activeIndex =
+        tabs.findIndex((tab) =>
+          tab.classList.contains("is-active")
+        );
+
+      const nextIndex =
+        activeIndex < 0
+          ? 0
+          : (activeIndex + 1) % tabs.length;
+
+      activateTab(tabs[nextIndex]);
+    };
+
+    const startAutoSwitch = () => {
+      stopAutoSwitch();
+
+      const shouldPause =
+        prefersReducedMotion ||
+        !isTabListVisible ||
+        isPointerPaused ||
+        isFocusPaused ||
+        document.hidden ||
+        tabs.length < 2;
+
+      if (shouldPause) {
+        return;
+      }
+
+      autoSwitchTimer =
+        window.setInterval(
+          switchToNextTab,
+          autoSwitchDelay
+        );
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        activateTab(tab);
+
+        startAutoSwitch();
+      });
+
+      tab.addEventListener(
+        "keydown",
+        (event) => {
+          let nextIndex = index;
+
+          if (
+            event.key === "ArrowRight" ||
+            event.key === "ArrowDown"
+          ) {
+            nextIndex =
+              (index + 1) % tabs.length;
+          } else if (
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowUp"
+          ) {
+            nextIndex =
+              (index - 1 + tabs.length) %
+              tabs.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex =
+              tabs.length - 1;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+
+          activateTab(
+            tabs[nextIndex],
+            true
+          );
+
+          startAutoSwitch();
+        }
+      );
+    });
+
+    if (supportsHover) {
+      switcher.addEventListener(
+        "pointerenter",
+        () => {
+          isPointerPaused = true;
+          stopAutoSwitch();
+        }
+      );
+
+      switcher.addEventListener(
+        "pointerleave",
+        () => {
+          isPointerPaused = false;
+          startAutoSwitch();
+        }
+      );
+    }
+
+    switcher.addEventListener(
+      "focusin",
+      () => {
+        isFocusPaused = true;
+        stopAutoSwitch();
+      }
+    );
+
+    switcher.addEventListener(
+      "focusout",
+      () => {
+        window.setTimeout(() => {
+          const activeElement =
+            document.activeElement;
+
+          isFocusPaused =
+            activeElement instanceof Node &&
+            switcher.contains(activeElement);
+
+          startAutoSwitch();
+        }, 0);
+      }
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (document.hidden) {
+          stopAutoSwitch();
+        } else {
+          startAutoSwitch();
+        }
+      }
+    );
+
+    if (tabList) {
+      const visibilityObserver =
+        new IntersectionObserver(
+          ([entry]) => {
+            isTabListVisible =
+              entry.isIntersecting;
+
+            if (isTabListVisible) {
+              startAutoSwitch();
+            } else {
+              stopAutoSwitch();
+            }
+          },
+          {
+            threshold: 0.65
+          }
+        );
+
+      visibilityObserver.observe(tabList);
+    }
+  });
+</script>
+
+<style>
+  .cases {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: var(--section-space) 0;
+
+    background:
+      radial-gradient(
+        circle at 7% 15%,
+        rgb(45 118 235 / 11%),
+        transparent 27%
+      ),
+      radial-gradient(
+        circle at 95% 82%,
+        rgb(119 80 238 / 9%),
+        transparent 27%
+      ),
+      linear-gradient(
+        180deg,
+        #091526 0%,
+        #081321 100%
+      );
+
+    color: #fff;
+  }
+
+  .cases::before {
+    content: "";
+
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgb(106 153 229 / 30%),
+        transparent
+      );
+  }
+
+  .cases-decoration {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    pointer-events: none;
+  }
+
+  .cases-grid-lines {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.16;
+
+    background-image:
+      linear-gradient(
+        rgb(118 157 208 / 10%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgb(118 157 208 / 10%) 1px,
+        transparent 1px
+      );
+
+    background-size: 72px 72px;
+
+    mask-image:
+      linear-gradient(
+        180deg,
+        #000,
+        transparent 88%
+      );
+  }
+
+  .cases-glow {
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    filter: blur(8px);
+  }
+
+  .glow-left {
+    top: 10%;
+    left: -250px;
+
+    background: rgb(40 128 255 / 8%);
+  }
+
+  .glow-right {
+    right: -230px;
+    bottom: 4%;
+
+    background: rgb(127 87 255 / 7%);
+  }
+
+  .cases-inner {
+    position: relative;
+  }
+
+  .cases-header {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.12fr)
+      minmax(320px, 0.88fr);
+    align-items: end;
+    gap: clamp(35px, 7vw, 100px);
+
+    margin-bottom: 42px;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 17px;
+
+    color: #6eaaff;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+  }
+
+  .section-eyebrow span {
+    width: 28px;
+    height: 2px;
+    flex: none;
+
+    border-radius: 999px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #4b92ff,
+        #9279ff
+      );
+  }
+
+  .cases-header h2 {
+    color: #fff;
+
+    font-size:
+      clamp(36px, 4.1vw, 62px);
+    font-weight: 760;
+    line-height: 1.16;
+    letter-spacing: -0.045em;
+  }
+
+  .cases-header h2 span {
+    display: block;
+
+    margin-top: 7px;
+
+    color: transparent;
+
+    background:
+      linear-gradient(
+        100deg,
+        #72aaff,
+        #9a79ff
+      );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .cases-introduction {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+
+    padding-bottom: 4px;
+  }
+
+  .cases-introduction > p {
+    max-width: 410px;
+
+    color: #91a2b8;
+    font-size:
+      clamp(15px, 1.2vw, 17px);
+    line-height: 1.85;
+  }
+
+  .cases-count {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex: none;
+  }
+
+  .cases-count strong {
+    color: #e7eff9;
+    font-size: 39px;
+    font-weight: 720;
+    line-height: 1;
+  }
+
+  .cases-count span {
+    color: #65788f;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .case-tabs {
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    margin-bottom: 30px;
+    padding: 7px;
+
+    border:
+      1px solid rgb(156 190 231 / 12%);
+    border-radius: 18px;
+
+    background: rgb(255 255 255 / 2.5%);
+  }
+
+  .case-tab {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 64px;
+    padding: 0 20px;
+
+    border:
+      1px solid transparent;
+    border-radius: 13px;
+
+    background: transparent;
+    color: #74879e;
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+      color 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .case-tab:hover {
+    color: #dce8f7;
+
+    background: rgb(255 255 255 / 3%);
+  }
+
+  .case-tab.is-active {
+    border-color:
+      rgb(103 157 255 / 22%);
+
+    background:
+      linear-gradient(
+        100deg,
+        rgb(53 118 232 / 17%),
+        rgb(112 80 226 / 10%)
+      );
+
+    color: #fff;
+
+    box-shadow:
+      inset 0 1px 0
+        rgb(255 255 255 / 5%);
+  }
+
+  .case-tab:focus-visible {
+    outline: 2px solid #70a7ff;
+    outline-offset: 2px;
+  }
+
+  .case-tab-number {
+    color: #55708f;
+
+    font-family:
+      ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .case-tab.is-active
+    .case-tab-number {
+    color: #77adff;
+  }
+
+  .case-tab small {
+    margin-left: auto;
+
+    color: #52657b;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .case-tab.is-active small {
+    color: #877cff;
+  }
+
+  .case-panel[hidden] {
+    display: none;
+  }
+
+  .case-group-introduction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    margin-bottom: 20px;
+  }
+
+  .case-group-introduction > p:last-child {
+    max-width: 710px;
+
+    color: #768ba3;
+    font-size: 13px;
+    line-height: 1.75;
+    text-align: right;
+  }
+
+  .case-group-eyebrow {
+    flex: none;
+
+    color: #6b9fe9;
+    font-size: 11px;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+  }
+
+  .cases-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .case-panel[data-layout="featured"]
+    .cases-grid {
+    grid-template-columns:
+      repeat(12, minmax(0, 1fr));
+    grid-auto-rows:
+      minmax(260px, auto);
+  }
+
+  .case-panel[data-layout="pair"]
+    .cases-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .case-card {
+    position: relative;
+
+    min-width: 0;
+    min-height: 340px;
+    overflow: hidden;
+
+    border:
+      1px solid rgb(160 190 226 / 15%);
+    border-radius: 22px;
+
+    background: #111f34;
+
+    box-shadow:
+      0 20px 48px rgb(0 0 0 / 18%);
+
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(1) {
+    grid-column: span 7;
+    grid-row: span 2;
+
+    min-height: 580px;
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(2),
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(3) {
+    grid-column: span 5;
+
+    min-height: 280px;
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(4),
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(5) {
+    grid-column: span 6;
+
+    min-height: 340px;
+  }
+
+  .case-panel[data-layout="pair"]
+    .case-card {
+    min-height: 480px;
+  }
+
+  .case-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+      rgb(91 153 255 / 40%);
+
+    box-shadow:
+      0 29px 65px
+        rgb(0 0 0 / 28%),
+      0 0 36px
+        rgb(57 124 246 / 8%);
+  }
+
+  .case-media {
+    position: absolute;
+    inset: 0;
+
+    margin: 0;
+  }
+
+  .case-media img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+      saturate(0.84)
+      contrast(1.03)
+      brightness(0.72);
+
+    transition:
+      transform 550ms ease,
+      filter 300ms ease;
+  }
+
+  .case-card:hover .case-media img {
+    transform: scale(1.045);
+
+    filter:
+      saturate(0.96)
+      contrast(1.04)
+      brightness(0.78);
+  }
+
+  .case-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgb(5 14 27 / 13%) 0%,
+        rgb(7 16 30 / 24%) 35%,
+        rgb(7 16 30 / 94%) 100%
+      );
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(2)
+    .case-overlay,
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(3)
+    .case-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(6 15 28 / 20%) 0%,
+        rgb(7 16 30 / 48%) 42%,
+        rgb(7 16 30 / 96%) 100%
+      );
+  }
+
+  .case-top {
+    position: absolute;
+    inset: 22px 22px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .case-number,
+  .case-category {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 27px;
+    padding: 5px 10px;
+
+    border:
+      1px solid rgb(191 215 243 / 20%);
+    border-radius: 999px;
+
+    background:
+      rgb(8 20 38 / 58%);
+    color: #d7e4f2;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    backdrop-filter: blur(10px);
+  }
+
+  .case-number {
+    color: #77b0ff;
+
+    font-family:
+      ui-monospace, monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .case-content {
+    position: absolute;
+    inset: auto 0 0;
+
+    padding:
+      clamp(22px, 2.6vw, 34px);
+  }
+
+  .case-card h3 {
+    max-width: 720px;
+
+    color: #fff;
+
+    font-size:
+      clamp(22px, 2.1vw, 32px);
+    font-weight: 720;
+    line-height: 1.32;
+    letter-spacing: -0.025em;
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(2)
+    h3,
+  .case-panel[data-layout="featured"]
+    .case-card:nth-child(3)
+    h3 {
+    font-size:
+      clamp(19px, 1.55vw, 24px);
+  }
+
+  .case-summary {
+    display: -webkit-box;
+
+    max-width: 760px;
+    margin-top: 12px;
+    overflow: hidden;
+
+    color: #a9b7c8;
+    font-size: 13px;
+    line-height: 1.75;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .case-panel[data-layout="featured"]
+    .case-card:first-child
+    .case-summary {
+    max-width: 620px;
+
+    font-size: 14px;
+
+    -webkit-line-clamp: 3;
+  }
+
+  .case-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    margin: 17px 0 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .case-highlights li {
+    padding: 5px 10px;
+
+    border:
+      1px solid rgb(159 194 236 / 18%);
+    border-radius: 999px;
+
+    background:
+      rgb(10 25 46 / 55%);
+    color: #c0cede;
+
+    font-size: 11px;
+    line-height: 1.35;
+
+    backdrop-filter: blur(9px);
+  }
+
+  .case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 20px;
+
+    color: #79affb;
+    font-size: 13px;
+    font-weight: 720;
+  }
+
+  .case-link svg {
+    transition: transform 180ms ease;
+  }
+
+  .case-link:hover {
+    color: #fff;
+  }
+
+  .case-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  .cases-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    margin-top: 29px;
+    padding: 21px 25px;
+
+    border:
+      1px solid rgb(156 186 221 / 12%);
+    border-radius: 17px;
+
+    background:
+      rgb(255 255 255 / 3%);
+  }
+
+  .cases-footer > div {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .footer-mark {
+    width: 8px;
+    height: 8px;
+    flex: none;
+
+    border-radius: 50%;
+
+    background: #4d94ff;
+
+    box-shadow:
+      0 0 0 6px
+        rgb(77 148 255 / 10%);
+  }
+
+  .cases-footer p {
+    color: #7d90a8;
+    font-size: 14px;
+  }
+
+  .cases-footer > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+
+    color: #77abf4;
+    font-size: 14px;
+    font-weight: 720;
+  }
+
+  .cases-footer > a:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 1000px) {
+    .cases-header {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 22px;
+    }
+
+    .cases-introduction {
+      align-items: center;
+    }
+
+    .case-panel[data-layout="featured"]
+      .cases-grid,
+    .case-panel[data-layout="pair"]
+      .cases-grid {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      grid-auto-rows: auto;
+    }
+
+    .case-panel[data-layout="featured"]
+      .case-card:nth-child(n) {
+      grid-column: auto;
+      grid-row: auto;
+
+      min-height: 390px;
+    }
+
+    .case-panel[data-layout="featured"]
+      .case-card:nth-child(1) {
+      grid-column: span 2;
+
+      min-height: 470px;
+    }
+
+    .case-panel[data-layout="pair"]
+      .case-card {
+      min-height: 430px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .cases-header {
+      margin-bottom: 30px;
+    }
+
+    .cases-introduction {
+      align-items: flex-start;
+    }
+
+    .cases-count {
+      display: none;
+    }
+
+    .case-tabs {
+      display: flex;
+
+      margin-right: -20px;
+      padding: 6px 20px 8px 0;
+      overflow-x: auto;
+
+      border: 0;
+      border-radius: 0;
+
+      background: transparent;
+
+      scrollbar-width: none;
+    }
+
+    .case-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .case-tab {
+      min-width: 190px;
+      min-height: 58px;
+
+      border-color:
+        rgb(156 190 231 / 12%);
+
+      background:
+        rgb(255 255 255 / 2.5%);
+    }
+
+    .case-group-introduction {
+      display: block;
+    }
+
+    .case-group-introduction
+      > p:last-child {
+      margin-top: 8px;
+
+      text-align: left;
+    }
+
+    .case-panel[data-layout="featured"]
+      .cases-grid,
+    .case-panel[data-layout="pair"]
+      .cases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-panel[data-layout="featured"]
+      .case-card:nth-child(n),
+    .case-panel[data-layout="pair"]
+      .case-card {
+      grid-column: auto;
+
+      min-height: 440px;
+    }
+
+    .cases-footer {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .case-panel[data-layout="featured"]
+      .case-card:nth-child(n),
+    .case-panel[data-layout="pair"]
+      .case-card {
+      min-height: 420px;
+    }
+
+    .case-top {
+      inset: 17px 17px auto;
+    }
+
+    .case-content {
+      padding: 21px 18px;
+    }
+
+    .case-card h3 {
+      font-size: 21px;
+    }
+
+    .case-summary {
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  .case-panel:not([hidden]) {
+    animation:
+      case-panel-enter
+      420ms ease both;
+  }
+
+  @keyframes case-panel-enter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-panel:not([hidden]) {
+      animation: none;
+    }
+
+    .case-card,
+    .case-media img,
+    .case-link svg,
+    .case-tab {
+      transition: none;
+    }
+
+    .case-card:hover {
+      transform: none;
+    }
+
+    .case-card:hover .case-media img {
+      transform: none;
+    }
+  }
+</style>

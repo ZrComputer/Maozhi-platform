@@ -1,0 +1,481 @@
+---
+import { site } from "../../data/site";
+---
+
+<header class="site-header">
+  <div class="header-shell">
+    <a
+      class="brand"
+      href="#home"
+      aria-label={`${site.name}首页`}
+    >
+      <span class="brand-logo">
+        <img
+          src="/assets/images/logo/logo.png"
+          width="284"
+          height="149"
+          alt=""
+        />
+      </span>
+
+      <span class="brand-copy">
+        <strong>{site.name}</strong>
+        <small>MAOZHI TECHNOLOGY</small>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="main-navigation"
+      aria-expanded="false"
+      aria-label="打开导航菜单"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="main-navigation"
+      class="navigation"
+      aria-label="主导航"
+    >
+      <div class="nav-links">
+        {
+          site.navigation.map((item, index) => (
+            <a
+              class:list={[
+                "nav-link",
+                { "is-current": index === 0 }
+              ]}
+              href={item.href}
+              aria-current={index === 0 ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <a class="contact-button" href="#contact">
+        <span>项目咨询</span>
+
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7" />
+          <path d="M8 7h9v9" />
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 18px 0 auto;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .header-shell {
+    width: min(1280px, calc(100% - 36px));
+    min-height: 66px;
+    margin-inline: auto;
+    padding: 8px 12px 8px 18px;
+
+    display: grid;
+    grid-template-columns: minmax(230px, 1fr) auto minmax(230px, 1fr);
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid rgb(255 255 255 / 34%);
+    border-radius: 999px;
+
+    background: rgb(238 242 248 / 82%);
+    box-shadow: 0 14px 44px rgb(0 0 0 / 18%);
+    backdrop-filter: blur(20px);
+    pointer-events: auto;
+  }
+
+  .brand {
+    grid-column: 1;
+    justify-self: start;
+    
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    flex: none;
+    color: #17243a;
+  }
+
+  .brand-logo {
+    display: grid;
+    place-items: center;
+    flex:none;
+
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border: 1px solid rgb(57 124 246 / 14%);
+    border-radius: 12px;
+    background:
+      linear-gradient(
+        145deg,
+        #ffffff,
+        #edf4ff
+      );
+
+    box-shadow:
+      0 5px 14px rgb(33 66 115 / 10%),
+      inset 0 0 0 1px rgb(255 255 255 / 75%);
+  }
+
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform:scale(1.0);
+    transform-origin: center;
+  }
+
+  .brand-copy {
+    display: grid;
+    gap: 2px;
+  }
+
+  .brand-copy strong {
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+
+  .brand-copy small {
+    color: #617086;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+  }
+
+  .navigation {
+    display: contents;
+  }
+
+  .nav-links {
+    grid-column: 2;
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+    gap: clamp(22px, 2.2vw, 36px);
+  }
+
+  .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+
+    color: #46566c;
+    font-size: 14px;
+    font-weight: 650;
+    white-space: nowrap;
+
+    transition: color 180ms ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    bottom: 4px;
+    left: 50%;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--blue);
+    transition:
+      right 180ms ease,
+      left 180ms ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.is-current {
+    color: #18263b;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.is-current::after {
+    right: 25%;
+    left: 25%;
+  }
+
+  .contact-button {
+    grid-column: 3;
+    justify-self: end;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 44px;
+    padding: 10px 24px;
+    border-radius: 999px;
+
+    background: #111d31;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .contact-button:hover {
+    transform: translateY(-1px);
+    background: var(--blue);
+    box-shadow: 0 10px 24px rgb(57 124 246 / 30%);
+  }
+
+  .menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #111d31;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 4px auto;
+    border-radius: 999px;
+    background: #fff;
+    transition:
+      transform 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  @media (max-width: 960px) {
+    .site-header {
+      inset-block-start: 12px;
+    }
+
+    .header-shell {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      min-height: 60px;
+      padding: 7px 8px 7px 16px;
+      border-radius: 22px;
+    }
+    .brand {
+      display: inline-flex;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+    }
+
+    .brand-copy strong {
+      font-size: 17px;
+    }
+
+    .brand-copy small {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: block;
+      flex: none;
+      margin-left: auto;
+    }
+
+    .navigation {
+      position: absolute;
+      inset: calc(100% + 10px) 0 auto;
+
+      display: none;
+      padding: 12px;
+
+      border: 1px solid rgb(255 255 255 / 25%);
+      border-radius: 20px;
+
+      background: rgb(235 240 247 / 96%);
+      box-shadow: 0 18px 45px rgb(0 0 0 / 20%);
+      backdrop-filter: blur(20px);
+    }
+
+    .navigation.is-open {
+      display: grid;
+      gap: 16px;
+    }
+
+    .nav-links {
+      display: grid;
+      justify-content: stretch;
+      gap: 0;
+    }
+
+    .nav-link {
+      min-height: 48px;
+      padding-inline: 12px;
+      border-bottom: 1px solid rgb(41 61 88 / 10%);
+    }
+
+    .nav-link::after {
+      display: none;
+    }
+
+    .contact-button {
+      width: 100%;
+      justify-content: stretch;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const button =
+    header?.querySelector<HTMLButtonElement>(".menu-toggle");
+  const navigation =
+    header?.querySelector<HTMLElement>(".navigation");
+
+  const setMenuState = (open: boolean) => {
+    if (!button || !navigation) return;
+
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute(
+      "aria-label",
+      open ? "关闭导航菜单" : "打开导航菜单"
+    );
+
+    navigation.classList.toggle("is-open", open);
+    document.body.classList.toggle("menu-open", open);
+  };
+
+  button?.addEventListener("click", () => {
+    const open =
+      button.getAttribute("aria-expanded") === "false";
+
+    setMenuState(open);
+  });
+
+  navigation
+    ?.querySelectorAll<HTMLAnchorElement>("a")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        setMenuState(false);
+      });
+    });
+
+  document.addEventListener("click", (event) => {
+    if (
+      header &&
+      event.target instanceof Node &&
+      !header.contains(event.target)
+    ) {
+      setMenuState(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setMenuState(false);
+      button?.focus();
+    }
+  });
+
+  window
+    .matchMedia("(min-width: 961px)")
+    .addEventListener("change", () => {
+      setMenuState(false);
+    });
+
+  const navigationLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>(
+      ".nav-link[href^='#']"
+    )
+  );
+
+  const navigationSections = navigationLinks
+    .map((link) => {
+      const sectionId = link.getAttribute("href");
+
+      if (!sectionId) return null;
+
+      return document.querySelector<HTMLElement>(sectionId);
+    })
+    .filter(
+      (section): section is HTMLElement => section !== null
+    );
+
+  const setCurrentNavigation = (sectionId: string) => {
+    navigationLinks.forEach((link) => {
+      const isCurrent =
+        link.getAttribute("href") === `#${sectionId}`;
+
+      link.classList.toggle("is-current", isCurrent);
+
+      if (isCurrent) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const currentEntry = entries.find(
+        (entry) => entry.isIntersecting
+      );
+
+      if (currentEntry) {
+        setCurrentNavigation(currentEntry.target.id);
+      }
+    },
+    {
+      rootMargin: "-30% 0px -60%",
+      threshold: 0
+    }
+  );
+
+  navigationSections.forEach((section) => {
+    sectionObserver.observe(section);
+  });
+</script>

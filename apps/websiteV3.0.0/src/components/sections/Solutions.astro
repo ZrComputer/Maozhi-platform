@@ -1,0 +1,854 @@
+---
+import { site } from "../../data/site";
+
+const solutions = site.solutions;
+---
+
+<section
+  id="solutions"
+  class="solutions"
+  aria-labelledby="solutions-heading"
+>
+  <div class="solutions-decoration" aria-hidden="true">
+    <div class="solutions-grid-lines"></div>
+    <div class="solutions-glow"></div>
+  </div>
+
+  <div class="container solutions-inner">
+    <header class="solutions-header">
+      <div class="solutions-heading">
+        <p class="section-eyebrow">
+          <span></span>
+          INDUSTRY SOLUTIONS
+        </p>
+
+        <h2 id="solutions-heading">
+          深入真实场景
+          <span>让技术转化为业务价值</span>
+        </h2>
+      </div>
+
+      <p class="section-introduction">
+        围绕制造、园区、政企、仓储及工商业用能场景，
+        整合工程、设备、软件与能源能力，为不同项目提供可落地的组合方案。
+      </p>
+    </header>
+
+    <div class="solutions-grid">
+      {
+        solutions.map((solution, index) => (
+          <article
+            id={solution.id}
+            class="solution-card"
+          >
+            <div class="solution-copy">
+              <div class="solution-meta">
+                <span class="solution-number">
+                  {solution.number}
+                </span>
+
+                <span class="solution-audience">
+                  {solution.audience}
+                </span>
+              </div>
+
+              <h3>{solution.title}</h3>
+
+              <p class="solution-description">
+                {solution.description}
+              </p>
+
+              <ul class="solution-features">
+                {
+                  solution.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))
+                }
+              </ul>
+
+              <a
+                class="solution-link"
+                href="#contact"
+                aria-label={`咨询${solution.title}解决方案`}
+              >
+                <span>查看解决方案</span>
+
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m13 6 6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="solution-visual" aria-hidden="true">
+              <div class="visual-ring ring-outer"></div>
+              <div class="visual-ring ring-inner"></div>
+
+              <div class="visual-icon">
+                {
+                  index === 0 ? (
+                    <svg
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 40V19l11-7v8l11-8v8l12-6v26" />
+                      <path d="M7 40h34" />
+                      <path d="M14 29h5v5h-5z" />
+                      <path d="M25 29h5v5h-5z" />
+                      <path d="M36 27v7" />
+                      <path d="M11 14V7h7v5" />
+                    </svg>
+                  ) : index === 1 ? (
+                    <svg
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M24 6 8 13v10c0 10 6 16 16 20 10-4 16-10 16-20V13z" />
+                      <path d="M17 25a7 7 0 0 1 14 0" />
+                      <circle cx="24" cy="21" r="3" />
+                      <path d="M15 31h18" />
+                    </svg>
+                  ) : index === 2 ? (
+                    <svg
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M7 16 24 7l17 9-17 9z" />
+                      <path d="M7 16v18l17 9 17-9V16" />
+                      <path d="M24 25v18" />
+                      <path d="m14 12 18 9" />
+                      <path d="M34 28h5v5h-5z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M27 5 13 27h11l-2 16 14-23H25z" />
+                      <path d="M9 10c4-3 8-4 12-4" />
+                      <path d="M39 37c-4 3-8 4-12 4" />
+                      <path d="m8 6 1 4 4-1" />
+                      <path d="m40 41-1-4-4 1" />
+                    </svg>
+                  )
+                }
+              </div>
+
+              <span class="visual-dot dot-one"></span>
+              <span class="visual-dot dot-two"></span>
+              <span class="visual-dot dot-three"></span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="solutions-summary">
+      <div>
+        <span class="summary-mark" aria-hidden="true"></span>
+
+        <p>
+          根据项目需求灵活组合智能化、机器人、软件及能源能力，
+          不局限于单一产品或固定方案。
+        </p>
+      </div>
+
+      <a href="#contact">
+        获取定制方案
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: var(--section-space) 0;
+
+    background:
+      radial-gradient(
+        circle at 92% 8%,
+        rgb(91 125 255 / 9%),
+        transparent 26%
+      ),
+      linear-gradient(
+        180deg,
+        #f5f8fc 0%,
+        #ffffff 100%
+      );
+
+    color: var(--text);
+  }
+
+  .solutions::before {
+    content: "";
+
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgb(100 143 224 / 36%),
+        transparent
+      );
+  }
+
+  .solutions-decoration {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .solutions-grid-lines {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.42;
+
+    background-image:
+      linear-gradient(
+        rgb(66 103 153 / 5%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgb(66 103 153 / 5%) 1px,
+        transparent 1px
+      );
+
+    background-size: 74px 74px;
+
+    mask-image:
+      linear-gradient(
+        180deg,
+        #000,
+        transparent 84%
+      );
+  }
+
+  .solutions-glow {
+    position: absolute;
+    top: -250px;
+    right: -180px;
+
+    width: 620px;
+    height: 620px;
+
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgb(82 116 255 / 9%),
+        transparent 68%
+      );
+  }
+
+  .solutions-inner {
+    position: relative;
+  }
+
+  .solutions-header {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(300px, 0.85fr);
+    align-items: end;
+    gap: clamp(35px, 7vw, 100px);
+
+    margin-bottom: clamp(42px, 5vw, 68px);
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 17px;
+
+    color: #397cf6;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+  }
+
+  .section-eyebrow span {
+    width: 28px;
+    height: 2px;
+    flex: none;
+
+    border-radius: 999px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #397cf6,
+        #8469ff
+      );
+  }
+
+  .solutions-header h2 {
+    color: #111f34;
+    font-size: clamp(36px, 4.1vw, 62px);
+    font-weight: 760;
+    line-height: 1.16;
+    letter-spacing: -0.045em;
+  }
+
+  .solutions-header h2 span {
+    display: block;
+    margin-top: 7px;
+
+    color: transparent;
+
+    background:
+      linear-gradient(
+        100deg,
+        #397cf6,
+        #7869e8
+      );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .section-introduction {
+    max-width: 500px;
+    padding-bottom: 5px;
+
+    color: #63758c;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.85;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .solution-card {
+    --solution-color: #397cf6;
+    --solution-color-rgb: 57 124 246;
+
+    position: relative;
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(125px, 170px);
+    gap: clamp(18px, 2.2vw, 35px);
+
+    min-width: 0;
+    min-height: 365px;
+    overflow: hidden;
+
+    padding: clamp(25px, 2.6vw, 34px);
+
+    border:
+      1px solid rgb(79 107 147 / 13%);
+    border-radius: 24px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgb(255 255 255 / 98%),
+        rgb(247 250 255 / 96%)
+      );
+
+    box-shadow:
+      0 18px 45px rgb(33 54 85 / 8%),
+      inset 0 1px 0 rgb(255 255 255 / 90%);
+
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .solution-card:nth-child(1),
+  .solution-card:nth-child(4) {
+    grid-column: span 7;
+  }
+
+  .solution-card:nth-child(2),
+  .solution-card:nth-child(3) {
+    grid-column: span 5;
+  }
+
+  .solution-card:nth-child(2) {
+    --solution-color: #8067e8;
+    --solution-color-rgb: 128 103 232;
+  }
+
+  .solution-card:nth-child(3) {
+    --solution-color: #10a9b8;
+    --solution-color-rgb: 16 169 184;
+  }
+
+  .solution-card:nth-child(4) {
+    --solution-color: #268a6f;
+    --solution-color-rgb: 38 138 111;
+  }
+
+  .solution-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0 auto 0 0;
+
+    width: 3px;
+
+    background:
+      linear-gradient(
+        180deg,
+        transparent,
+        var(--solution-color),
+        transparent
+      );
+
+    opacity: 0.7;
+  }
+
+  .solution-card::after {
+    content: "";
+
+    position: absolute;
+    right: -90px;
+    bottom: -100px;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgb(var(--solution-color-rgb) / 10%),
+        transparent 68%
+      );
+
+    pointer-events: none;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+      rgb(var(--solution-color-rgb) / 30%);
+
+    box-shadow:
+      0 25px 60px rgb(33 54 85 / 13%),
+      0 0 36px rgb(var(--solution-color-rgb) / 6%);
+  }
+
+  .solution-copy {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .solution-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .solution-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 37px;
+    min-height: 23px;
+    padding: 4px 8px;
+
+    border:
+      1px solid rgb(var(--solution-color-rgb) / 17%);
+    border-radius: 999px;
+
+    background:
+      rgb(var(--solution-color-rgb) / 7%);
+
+    color: var(--solution-color);
+
+    font:
+      700 10px/1 ui-monospace,
+      monospace;
+
+    letter-spacing: 0.12em;
+  }
+
+  .solution-audience {
+    color: #718198;
+    font-size: 12px;
+    font-weight: 650;
+  }
+
+  .solution-card h3 {
+    margin-top: 21px;
+
+    color: #15243a;
+    font-size: clamp(25px, 2.2vw, 34px);
+    font-weight: 740;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+  }
+
+  .solution-description {
+    margin-top: 15px;
+
+    color: #65768b;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .solution-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    margin: 22px 0 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .solution-features li {
+    padding: 5px 10px;
+
+    border:
+      1px solid rgb(var(--solution-color-rgb) / 14%);
+    border-radius: 999px;
+
+    background:
+      rgb(var(--solution-color-rgb) / 5%);
+
+    color: #53677f;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 24px;
+
+    color: var(--solution-color);
+    font-size: 13px;
+    font-weight: 720;
+  }
+
+  .solution-link svg {
+    transition: transform 180ms ease;
+  }
+
+  .solution-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  .solution-visual {
+    position: relative;
+    align-self: center;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .visual-ring {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .ring-outer {
+    inset: 0;
+
+    border:
+      1px dashed rgb(var(--solution-color-rgb) / 25%);
+  }
+
+  .ring-inner {
+    inset: 17%;
+
+    border:
+      1px solid rgb(var(--solution-color-rgb) / 16%);
+
+    background:
+      rgb(var(--solution-color-rgb) / 4%);
+  }
+
+  .visual-icon {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    place-items: center;
+
+    width: 70px;
+    height: 70px;
+
+    border:
+      1px solid rgb(var(--solution-color-rgb) / 22%);
+    border-radius: 22px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgb(var(--solution-color-rgb) / 14%),
+        rgb(255 255 255 / 75%)
+      );
+
+    color: var(--solution-color);
+
+    box-shadow:
+      0 15px 34px
+        rgb(var(--solution-color-rgb) / 12%);
+  }
+
+  .visual-icon svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .visual-dot {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border: 2px solid #fff;
+    border-radius: 50%;
+
+    background: var(--solution-color);
+
+    box-shadow:
+      0 0 0 4px
+        rgb(var(--solution-color-rgb) / 10%);
+  }
+
+  .dot-one {
+    top: 12%;
+    left: 25%;
+  }
+
+  .dot-two {
+    right: 8%;
+    bottom: 30%;
+  }
+
+  .dot-three {
+    bottom: 7%;
+    left: 32%;
+  }
+
+  .solutions-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    margin-top: 30px;
+    padding: 21px 25px;
+
+    border: 1px solid rgb(69 99 142 / 11%);
+    border-radius: 17px;
+
+    background: rgb(255 255 255 / 72%);
+
+    box-shadow:
+      0 12px 34px rgb(41 63 94 / 5%);
+  }
+
+  .solutions-summary > div {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .summary-mark {
+    width: 8px;
+    height: 8px;
+    flex: none;
+
+    border-radius: 50%;
+
+    background: #397cf6;
+
+    box-shadow:
+      0 0 0 6px rgb(57 124 246 / 10%);
+  }
+
+  .solutions-summary p {
+    color: #63758b;
+    font-size: 14px;
+  }
+
+  .solutions-summary a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+
+    color: #397cf6;
+    font-size: 14px;
+    font-weight: 720;
+  }
+
+  .solutions-summary a:hover {
+    color: #715de0;
+  }
+
+  @media (max-width: 1080px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .solution-card:nth-child(n) {
+      grid-column: auto;
+      grid-template-columns: minmax(0, 1fr) 125px;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .solutions-header {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 22px;
+    }
+
+    .solutions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .solution-card:nth-child(n) {
+      grid-template-columns: minmax(0, 1fr) 135px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .solutions {
+      padding-block: 72px;
+    }
+
+    .solutions-header {
+      margin-bottom: 35px;
+    }
+
+    .solutions-header h2 {
+      font-size: clamp(34px, 10vw, 46px);
+    }
+
+    .section-introduction {
+      font-size: 15px;
+    }
+
+    .solution-card:nth-child(n) {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 0;
+      padding: 23px;
+      border-radius: 19px;
+    }
+
+    .solution-visual {
+      order: -1;
+      align-self: flex-end;
+
+      width: 112px;
+      margin-bottom: -74px;
+    }
+
+    .visual-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
+    }
+
+    .visual-icon svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .solution-copy {
+      width: 100%;
+    }
+
+    .solution-card h3 {
+      max-width: calc(100% - 105px);
+    }
+
+    .solution-description {
+      margin-top: 22px;
+    }
+
+    .solution-link {
+      margin-top: 27px;
+    }
+
+    .solutions-summary {
+      align-items: flex-start;
+      flex-direction: column;
+
+      padding: 20px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution-card,
+    .solution-link svg {
+      transition: none;
+    }
+
+    .solution-card:hover {
+      transform: none;
+    }
+  }
+</style>

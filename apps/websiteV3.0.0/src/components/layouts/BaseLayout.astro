@@ -1,0 +1,45 @@
+---
+import "../../styles/global.css";
+import { site } from "../../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.name}｜工业数字化生态集成服务商`,
+  description = site.seoDescription
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <title>{title}</title>
+
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#07101f" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/images/logo/logo.png"
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">
+      跳至主要内容
+    </a>
+
+    <slot />
+  </body>
+</html>

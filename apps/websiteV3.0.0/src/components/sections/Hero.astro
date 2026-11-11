@@ -1,0 +1,1091 @@
+---
+import { site } from "../../data/site";
+
+const { badges, headline, highlightedHeadline, summary, metrics } =
+  site.hero;
+---
+
+<section
+  id="home"
+  class="hero"
+  aria-labelledby="hero-heading"
+>
+  <div class="hero-decoration" aria-hidden="true">
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+
+    <svg
+      class="network network-left"
+      viewBox="0 0 600 700"
+      preserveAspectRatio="none"
+    >
+      <g class="network-lines">
+        <path d="M18 120 130 190 238 142 350 242 485 165" />
+        <path d="M54 420 168 350 278 438 400 338 572 418" />
+        <path d="M130 190 168 350 350 242 400 338" />
+        <path d="M278 438 338 590 512 520" />
+      </g>
+
+      <g class="network-points">
+        <circle cx="18" cy="120" r="4" />
+        <circle cx="130" cy="190" r="5" />
+        <circle cx="238" cy="142" r="3" />
+        <circle cx="350" cy="242" r="5" />
+        <circle cx="485" cy="165" r="4" />
+        <circle cx="54" cy="420" r="4" />
+        <circle cx="168" cy="350" r="5" />
+        <circle cx="278" cy="438" r="4" />
+        <circle cx="400" cy="338" r="3" />
+        <circle cx="572" cy="418" r="5" />
+        <circle cx="338" cy="590" r="4" />
+        <circle cx="512" cy="520" r="3" />
+      </g>
+    </svg>
+
+    <svg
+      class="network network-right"
+      viewBox="0 0 600 700"
+      preserveAspectRatio="none"
+    >
+      <g class="network-lines">
+        <path d="M35 210 155 125 280 208 428 132 580 215" />
+        <path d="M92 470 220 370 342 465 485 360 590 478" />
+        <path d="M155 125 220 370 280 208 342 465" />
+        <path d="M342 465 410 600 560 555" />
+      </g>
+
+      <g class="network-points">
+        <circle cx="35" cy="210" r="4" />
+        <circle cx="155" cy="125" r="5" />
+        <circle cx="280" cy="208" r="3" />
+        <circle cx="428" cy="132" r="4" />
+        <circle cx="580" cy="215" r="5" />
+        <circle cx="92" cy="470" r="4" />
+        <circle cx="220" cy="370" r="5" />
+        <circle cx="342" cy="465" r="4" />
+        <circle cx="485" cy="360" r="3" />
+        <circle cx="590" cy="478" r="5" />
+        <circle cx="410" cy="600" r="4" />
+        <circle cx="560" cy="555" r="3" />
+      </g>
+    </svg>
+
+    <div class="cursor-glow"></div>
+    <canvas class="particle-canvas" aria-hidden="true"></canvas>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-badges">
+      {
+        badges.map((badge, index) => (
+          <span class:list={["hero-badge", `badge-${index + 1}`]}>
+            <i />
+            {badge}
+          </span>
+        ))
+      }
+    </div>
+
+    <h1 id="hero-heading">
+      {headline}
+      <span>{highlightedHeadline}</span>
+    </h1>
+
+    <p class="hero-summary">
+      立足滁州，面向工业、园区与政企客户，提供
+      <strong>智能化集成</strong>、
+      <strong>机器人与 AI 应用</strong>、
+      <strong>算电协同</strong>
+      的一体化解决方案。
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#solutions">
+        探索解决方案
+
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14" />
+          <path d="m13 6 6 6-6 6" />
+        </svg>
+      </a>
+
+      <a class="btn btn-outline" href="#cases">
+        <span class="play-icon" aria-hidden="true">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+          >
+            <path d="M5.2 3.2a.7.7 0 0 0-1.1.6v8.4a.7.7 0 0 0 1.1.6l6.8-4.2a.7.7 0 0 0 0-1.2z" />
+          </svg>
+        </span>
+
+        查看项目案例
+      </a>
+    </div>
+
+    <div class="hero-metrics" aria-label="公司业务概况">
+      {
+        metrics.map((metric) => (
+          <div class="metric">
+            <strong data-counter={metric.value}>{metric.value}</strong>
+            <span>{metric.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <a
+      class="scroll-hint"
+      href="#services"
+      aria-label="向下浏览核心业务"
+    >
+      <span class="mouse">
+        <i></i>
+      </span>
+      <span>向下浏览</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+
+    min-height: 100svh;
+    overflow: hidden;
+    padding: 145px 0 48px;
+
+    background:
+      radial-gradient(
+        circle at 50% 56%,
+        rgb(0 190 255 / 13%),
+        transparent 29%
+      ),
+      radial-gradient(
+        circle at 90% 9%,
+        rgb(68 91 231 / 19%),
+        transparent 27%
+      ),
+      radial-gradient(
+        circle at 8% 100%,
+        rgb(103 71 207 / 13%),
+        transparent 24%
+      ),
+      linear-gradient(
+        135deg,
+        #060e1c 0%,
+        #0a172b 48%,
+        #11172f 100%
+      );
+
+    color: #fff;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    opacity: 0.22;
+
+    background-image:
+      linear-gradient(
+        rgb(120 163 220 / 11%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgb(120 163 220 / 11%) 1px,
+        transparent 1px
+      );
+
+    background-size: 64px 64px;
+
+    mask-image:
+      radial-gradient(
+        circle at center,
+        #000 0%,
+        rgb(0 0 0 / 85%) 48%,
+        transparent 88%
+      );
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(
+        90deg,
+        rgb(5 12 25 / 42%),
+        transparent 22%,
+        transparent 78%,
+        rgb(10 14 33 / 30%)
+      ),
+      linear-gradient(
+        0deg,
+        rgb(7 13 28 / 30%),
+        transparent 30%
+      );
+    pointer-events: none;
+  }
+
+  .hero-decoration {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .cursor-glow{
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+
+    background:
+      radial-gradient(
+        circle 250px at
+        var(--pointer-x, 50%)
+        var(--pointer-y, 50%),
+        rgb(69 139 255 / 14%),
+        rgb(111 81 255 /6%) 38%,
+        transparent 72%
+      );
+    
+    transition:opacity 240ms ease;
+  }
+
+  .cursor-glow.is-visible {
+    opacity: 1;
+  }
+
+  @media (hover:none), (pointer:coarse){
+    .cursor-glow{
+      display:none;
+    }
+  }
+
+  .particle-canvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.72;
+  }
+
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(5px);
+  }
+
+  .glow-left {
+    top: 28%;
+    left: 28%;
+    width: 420px;
+    height: 420px;
+    background: rgb(0 208 255 / 5%);
+  }
+
+  .glow-right {
+    right: 22%;
+    bottom: 13%;
+    width: 340px;
+    height: 340px;
+    background: rgb(113 72 255 / 5%);
+  }
+
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgb(53 151 255 / 13%);
+    border-radius: 50%;
+    transform: translate(-50%, -47%);
+  }
+
+  .orbit-one {
+    width: min(650px, 55vw);
+    aspect-ratio: 1;
+  }
+
+  .orbit-two {
+    width: min(880px, 72vw);
+    aspect-ratio: 1;
+    border-color: rgb(115 91 255 / 8%);
+  }
+
+  .network {
+    position: absolute;
+    top: 0;
+    width: 42%;
+    height: 100%;
+    opacity: 0.75;
+  }
+
+  .network-left {
+    left: 0;
+  }
+
+  .network-right {
+    right: 0;
+  }
+
+  .network-lines {
+    fill: none;
+    stroke: #2972c3;
+    stroke-width: 1;
+    opacity: 0.26;
+  }
+
+  .network-points {
+    fill: #24d8df;
+    filter: drop-shadow(0 0 5px #24d8df);
+  }
+
+  .network-points circle:nth-child(3n + 2) {
+    fill: #7e62ff;
+    filter: drop-shadow(0 0 5px #7e62ff);
+  }
+
+  .network-points circle:nth-child(4n) {
+    fill: #3c91ff;
+    filter: drop-shadow(0 0 5px #3c91ff);
+  }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    justify-items: center;
+
+    width: min(960px, calc(100% - 36px));
+    text-align: center;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 27px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    min-height: 34px;
+    padding: 6px 14px;
+
+    border: 1px solid rgb(154 190 230 / 22%);
+    border-radius: 999px;
+
+    background: rgb(18 35 61 / 72%);
+    color: #c6d4e6;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    backdrop-filter: blur(12px);
+  }
+
+  .hero-badge i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+  }
+
+  .hero-badge:nth-child(2) i {
+    background: #49a1ff;
+    box-shadow: 0 0 12px #49a1ff;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: clamp(52px, 6.8vw, 98px);
+    font-weight: 800;
+    line-height: 1.03;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 9px;
+
+    color: transparent;
+    background: linear-gradient(
+      96deg,
+      #6ca7ff 5%,
+      #8494ff 45%,
+      #a975ff 88%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .hero-summary {
+    max-width: 760px;
+    margin-top: 29px;
+
+    color: #99abc1;
+    font-size: clamp(16px, 1.42vw, 21px);
+    line-height: 1.75;
+    text-wrap: balance;
+  }
+
+  .hero-summary strong {
+    color: #eef4fb;
+    font-weight: 650;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 35px;
+  }
+
+  .play-icon {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    color: #152238;
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    width: min(720px, 100%);
+    margin-top: clamp(54px, 7vh, 78px);
+  }
+
+  .metric {
+    display: grid;
+    gap: 9px;
+    padding-inline: 28px;
+    border-right: 1px solid rgb(173 196 224 / 15%);
+  }
+
+  .metric:last-child {
+    border-right: 0;
+  }
+
+  .metric strong {
+    color: #dce7f3;
+    font-size: clamp(30px, 3vw, 43px);
+    font-weight: 750;
+    line-height: 1;
+  }
+
+  .metric span {
+    color: #62748a;
+    font-size: 13px;
+  }
+
+  .scroll-hint {
+    display: grid;
+    justify-items: center;
+    gap: 7px;
+    margin-top: clamp(24px, 4vh, 42px);
+
+    color: #53657d;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .mouse {
+    position: relative;
+    width: 22px;
+    height: 35px;
+
+    border: 2px solid #52657e;
+    border-radius: 999px;
+  }
+
+  .mouse i {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+
+    width: 3px;
+    height: 7px;
+    border-radius: 999px;
+
+    background: #7592b4;
+    transform: translateX(-50%);
+    animation: scroll-wheel 1.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .particle-canvas {
+      opacity: 0.35;
+    }
+
+    .cursor-glow {
+      display: none;
+    }
+
+    .mouse i {
+      animation: none;
+    }
+  }
+
+  @keyframes scroll-wheel {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+
+    30% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, 10px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .network {
+      width: 60%;
+      opacity: 0.52;
+    }
+
+    .network-left {
+      left: -23%;
+    }
+
+    .network-right {
+      right: -23%;
+    }
+
+    .orbit-one {
+      width: 75vw;
+    }
+
+    .orbit-two {
+      width: 105vw;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      min-height: 780px;
+      padding: 118px 0 38px;
+    }
+
+    .hero-badges {
+      gap: 7px;
+      margin-bottom: 23px;
+    }
+
+    .hero-badge {
+      min-height: 30px;
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 13vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span {
+      margin-top: 4px;
+    }
+
+    .hero-summary {
+      max-width: 520px;
+      margin-top: 23px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .hero-actions .btn {
+      flex: 1 1 145px;
+    }
+
+    .hero-metrics {
+      margin-top: 48px;
+    }
+
+    .metric {
+      gap: 7px;
+      padding-inline: 5px;
+    }
+
+    .metric strong {
+      font-size: clamp(23px, 7vw, 31px);
+    }
+
+    .metric span {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .scroll-hint {
+      margin-top: 30px;
+    }
+
+    .network {
+      opacity: 0.35;
+    }
+
+    .orbit-one {
+      width: 110vw;
+    }
+
+    .orbit-two {
+      width: 150vw;
+    }
+  }
+
+  @media (max-height: 760px) and (min-width: 701px) {
+    .hero {
+      padding-block: 125px 28px;
+    }
+
+    .hero-metrics {
+      margin-top: 40px;
+    }
+
+    .scroll-hint {
+      margin-top: 22px;
+    }
+  }
+  </style>
+
+  <script>
+    const hero = document.querySelector<HTMLElement>(".hero");
+    const canvas =
+      hero?.querySelector<HTMLCanvasElement>(".particle-canvas");
+    const context = canvas?.getContext("2d");
+
+    if (hero && canvas && context) {
+      type Particle = {
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        radius: number;
+        color: string;
+      };
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      let width = 0;
+      let height = 0;
+      let animationFrame = 0;
+      let running = false;
+      let particles: Particle[] = [];
+
+      const colors = [
+        "91, 165, 255",
+        "83, 218, 222",
+        "139, 114, 255"
+      ];
+
+      const createParticles = () => {
+        const count =
+          width < 700
+            ? 24
+            : Math.min(58, Math.floor(width / 24));
+
+        particles = Array.from(
+          { length: count },
+          () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.24,
+            vy: (Math.random() - 0.5) * 0.24,
+            radius: Math.random() * 1.4 + 0.7,
+            color:
+              colors[
+                Math.floor(Math.random() * colors.length)
+              ]
+          })
+        );
+      };
+
+      const resizeCanvas = () => {
+        const rectangle = hero.getBoundingClientRect();
+        const pixelRatio = Math.min(
+          window.devicePixelRatio || 1,
+          2
+        );
+
+        width = rectangle.width;
+        height = rectangle.height;
+
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+
+        context.setTransform(
+          pixelRatio,
+          0,
+          0,
+          pixelRatio,
+          0,
+          0
+        );
+
+        createParticles();
+
+        if (reducedMotion) {
+          renderParticles();
+        }
+      };
+
+      const renderParticles = () => {
+        context.clearRect(0, 0, width, height);
+
+        particles.forEach((particle) => {
+          if (!reducedMotion) {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            if (particle.x < 0 || particle.x > width) {
+              particle.vx *= -1;
+            }
+
+            if (particle.y < 0 || particle.y > height) {
+              particle.vy *= -1;
+            }
+          }
+
+          context.beginPath();
+          context.arc(
+            particle.x,
+            particle.y,
+            particle.radius,
+            0,
+            Math.PI * 2
+          );
+
+          context.fillStyle =
+            `rgba(${particle.color}, 0.72)`;
+
+          context.shadowBlur = 9;
+          context.shadowColor =
+            `rgba(${particle.color}, 0.65)`;
+
+          context.fill();
+        });
+
+        context.shadowBlur = 0;
+
+        for (
+          let firstIndex = 0;
+          firstIndex < particles.length;
+          firstIndex += 1
+        ) {
+          for (
+            let secondIndex = firstIndex + 1;
+            secondIndex < particles.length;
+            secondIndex += 1
+          ) {
+            const first = particles[firstIndex];
+            const second = particles[secondIndex];
+
+            const differenceX = first.x - second.x;
+            const differenceY = first.y - second.y;
+
+            const distance = Math.hypot(
+              differenceX,
+              differenceY
+            );
+
+            const maximumDistance = 125;
+
+            if (distance < maximumDistance) {
+              const opacity =
+                (1 - distance / maximumDistance) * 0.13;
+
+              context.beginPath();
+              context.moveTo(first.x, first.y);
+              context.lineTo(second.x, second.y);
+
+              context.strokeStyle =
+                `rgba(93, 157, 235, ${opacity})`;
+
+              context.lineWidth = 0.7;
+              context.stroke();
+            }
+          }
+        }
+      };
+
+      const animateParticles = () => {
+        if (!running) {
+          return;
+        }
+
+        renderParticles();
+
+        animationFrame =
+          window.requestAnimationFrame(
+            animateParticles
+          );
+      };
+
+      const startParticles = () => {
+        if (reducedMotion) {
+          renderParticles();
+          return;
+        }
+
+        if (running) {
+          return;
+        }
+
+        running = true;
+        animateParticles();
+      };
+
+      const stopParticles = () => {
+        running = false;
+
+        window.cancelAnimationFrame(
+          animationFrame
+        );
+      };
+
+      const resizeObserver =
+        new ResizeObserver(resizeCanvas);
+
+      resizeObserver.observe(hero);
+
+      const visibilityObserver =
+        new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              startParticles();
+            } else {
+              stopParticles();
+            }
+          },
+          {
+            threshold: 0.05
+          }
+        );
+
+      visibilityObserver.observe(hero);
+    }
+  </script>
+
+  <script>
+    const glowHero =
+      document.querySelector<HTMLElement>(".hero");
+
+    const cursorGlow =
+      glowHero?.querySelector<HTMLElement>(
+        ".cursor-glow"
+      );
+
+    const supportsPointerGlow =
+      window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      ).matches;
+
+    if (
+      glowHero &&
+      cursorGlow &&
+      supportsPointerGlow
+    ) {
+      let glowFrame = 0;
+      let pointerX = 0;
+      let pointerY = 0;
+
+      const updateGlow = () => {
+        glowHero.style.setProperty(
+          "--pointer-x",
+          `${pointerX}px`
+        );
+
+        glowHero.style.setProperty(
+          "--pointer-y",
+          `${pointerY}px`
+        );
+
+        glowFrame = 0;
+      };
+
+      glowHero.addEventListener(
+        "pointermove",
+        (event) => {
+          const rectangle =
+            glowHero.getBoundingClientRect();
+
+          pointerX =
+            event.clientX - rectangle.left;
+
+          pointerY =
+            event.clientY - rectangle.top;
+
+          if (!glowFrame) {
+            glowFrame =
+              window.requestAnimationFrame(
+                updateGlow
+              );
+          }
+        }
+      );
+
+      glowHero.addEventListener(
+        "pointerenter",
+        () => {
+          cursorGlow.classList.add(
+            "is-visible"
+          );
+        }
+      );
+
+      glowHero.addEventListener(
+        "pointerleave",
+        () => {
+          cursorGlow.classList.remove(
+            "is-visible"
+          );
+        }
+      );
+    }
+  </script>
+
+  <script>
+    const counterElements =
+      document.querySelectorAll<HTMLElement>(
+        "[data-counter]"
+      );
+
+    const reducedCounterMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+    const counterObserver =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const element =
+              entry.target as HTMLElement;
+
+            const target = Number(
+              element.dataset.counter
+            );
+
+            if (!Number.isFinite(target)) {
+              counterObserver.unobserve(element);
+              return;
+            }
+
+            if (reducedCounterMotion) {
+              element.textContent =
+                String(target);
+
+              counterObserver.unobserve(element);
+              return;
+            }
+
+            const duration = 1000;
+            const startTime = performance.now();
+
+            element.textContent = "0";
+
+            const updateCounter = (
+              currentTime: number
+            ) => {
+              const progress = Math.min(
+                (currentTime - startTime) /
+                  duration,
+                1
+              );
+
+              const easedProgress =
+                1 - Math.pow(1 - progress, 3);
+
+              const currentValue = Math.round(
+                target * easedProgress
+              );
+
+              element.textContent =
+                String(currentValue);
+
+              if (progress < 1) {
+                window.requestAnimationFrame(
+                  updateCounter
+                );
+              } else {
+                element.textContent =
+                  String(target);
+              }
+            };
+
+            window.requestAnimationFrame(
+              updateCounter
+            );
+
+            counterObserver.unobserve(element);
+          });
+        },
+        {
+          threshold: 0.6
+        }
+      );
+
+    counterElements.forEach((element) => {
+      const target = Number(
+        element.dataset.counter
+      );
+
+      if (Number.isFinite(target)) {
+        counterObserver.observe(element);
+      }
+    });
+  </script>

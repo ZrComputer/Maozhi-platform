@@ -1,0 +1,1180 @@
+---
+import { site } from "../../data/site";
+
+const contact = site.contact;
+const currentYear = new Date().getFullYear();
+---
+
+<section
+  id="contact"
+  class="contact"
+  aria-labelledby="contact-heading"
+>
+  <div class="contact-decoration" aria-hidden="true">
+    <div class="contact-grid-lines"></div>
+    <div class="contact-glow contact-glow-left"></div>
+    <div class="contact-glow contact-glow-right"></div>
+  </div>
+
+  <div class="container contact-inner">
+    <div class="contact-cta">
+      <div class="contact-cta-copy">
+        <p class="contact-eyebrow">
+          <span></span>
+          {contact.eyebrow}
+        </p>
+
+        <h2 id="contact-heading">
+          让项目从一次
+          <span>沟通开始</span>
+        </h2>
+
+        <p class="contact-description">
+          {contact.description}
+        </p>
+
+        <ul class="contact-capabilities">
+          <li>方案咨询</li>
+          <li>现场勘察</li>
+          <li>项目交付</li>
+          <li>持续运维</li>
+        </ul>
+      </div>
+
+      <div class="contact-signal" aria-hidden="true">
+        <div class="signal-orbit signal-orbit-one"></div>
+        <div class="signal-orbit signal-orbit-two"></div>
+        <div class="signal-orbit signal-orbit-three"></div>
+
+        <div class="signal-center">
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-information">
+      <div class="contact-company">
+        <div class="contact-brand">
+          <span class="contact-logo">
+            <img
+              src="/assets/images/logo/logo.png"
+              width="284"
+              height="149"
+              alt=""
+            />
+          </span>
+
+          <div>
+            <strong>{site.name}</strong>
+            <small>MAOZHI TECHNOLOGY</small>
+          </div>
+        </div>
+
+        <p class="contact-module-title">
+          项目咨询与商务合作
+        </p>
+      </div>
+
+      <div class="contact-details">
+        <article class="contact-detail contact-address">
+          <div class="detail-icon">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20 10c0 5-8 12-8 12S4 15 4 10
+                a8 8 0 1 1 16 0Z"
+              ></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+          </div>
+
+          <div>
+            <span>公司地址</span>
+            <strong>{contact.address}</strong>
+          </div>
+        </article>
+
+        <article class="contact-detail">
+          <div class="detail-icon">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2
+                19.79 19.79 0 0 1-8.63-3.07
+                19.5 19.5 0 0 1-6-6
+                19.79 19.79 0 0 1-3.07-8.67
+                A2 2 0 0 1 4.11 2h3
+                a2 2 0 0 1 2 1.72
+                12.84 12.84 0 0 0 .7 2.81
+                2 2 0 0 1-.45 2.11L8.09 9.91
+                a16 16 0 0 0 6 6l1.27-1.27
+                a2 2 0 0 1 2.11-.45
+                12.84 12.84 0 0 0 2.81.7
+                A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+          </div>
+
+          <div>
+            <span>联系电话</span>
+
+            <div class="phone-list">  
+              <div class="contact-person">
+                <p class="contact-person-name">
+                  王鑫
+                  <span>总经理</span>
+                </p>
+
+                <div class="contact-person-phones">
+                  <a href={`tel:${contact.phones[0]}`}>
+                    {contact.phones[0]}
+                  </a>
+                  <a href={`tel:${contact.phones[1]}`}>
+                    {contact.phones[1]}
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-person">
+                <p class="contact-person-name">
+                  李勇
+                  <span>总经理</span>
+                </p>
+
+                <div class="contact-person-phones">
+                  <a href={`tel:${contact.phones[2]}`}>
+                    {contact.phones[2]}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="contact-detail">
+          <div class="detail-icon">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect
+                width="20"
+                height="16"
+                x="2"
+                y="4"
+                rx="2"
+              ></rect>
+              <path d="m22 7-10 6L2 7"></path>
+            </svg>
+          </div>
+
+          <div>
+            <span>电子邮箱</span>
+
+            <a href={`mailto:${contact.email}`}>
+              {contact.email}
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <aside class="wechat-card">
+        <div class="wechat-card-top">
+          <div>
+            <span class="wechat-status"></span>
+            <small>WECHAT OFFICIAL ACCOUNT</small>
+          </div>
+
+          <span class="wechat-code">公众号</span>
+        </div>
+
+        <div class="wechat-qr-frame">
+          <img
+            src={contact.wechat.qrImage}
+            width="430"
+            height="430"
+            alt={`${contact.wechat.name}微信公众号二维码`}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </aside>
+    
+    </div>
+
+    <footer class="contact-footer">
+      <div class="footer-copyright">
+        <span>
+          © {currentYear} {site.fullName}
+        </span>
+
+        <span class="copyright-divider"></span>
+
+        <span>All Rights Reserved.</span>
+      </div>
+
+      <nav
+        class="footer-navigation"
+        aria-label="页脚导航"
+      >
+        {
+          site.navigation.map((item) => (
+            <a href={item.href}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <a
+        class="back-to-top"
+        href="#home"
+        aria-label="返回页面顶部"
+      >
+        <span>返回顶部</span>
+
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m18 15-6-6-6 6"></path>
+        </svg>
+      </a>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding:
+      clamp(72px, 8vw, 118px)
+      0
+      0;
+
+    background:
+      radial-gradient(
+        circle at 13% 15%,
+        rgb(57 124 246 / 16%),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at 88% 72%,
+        rgb(132 105 255 / 12%),
+        transparent 30%
+      ),
+      linear-gradient(
+        180deg,
+        #081321 0%,
+        #050d18 100%
+      );
+
+    color: #fff;
+  }
+
+  .contact::before {
+    content: "";
+
+    position: absolute;
+    inset: 0 0 auto;
+
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgb(111 160 233 / 30%),
+        transparent
+      );
+  }
+
+  .contact-decoration {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    pointer-events: none;
+  }
+
+  .contact-grid-lines {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.14;
+
+    background-image:
+      linear-gradient(
+        rgb(126 162 207 / 11%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgb(126 162 207 / 11%) 1px,
+        transparent 1px
+      );
+
+    background-size: 72px 72px;
+
+    mask-image:
+      linear-gradient(
+        180deg,
+        #000,
+        transparent 80%
+      );
+  }
+
+  .contact-glow {
+    position: absolute;
+
+    width: 460px;
+    height: 460px;
+
+    border-radius: 50%;
+
+    filter: blur(15px);
+  }
+
+  .contact-glow-left {
+    top: -230px;
+    left: -180px;
+
+    background: rgb(42 121 245 / 10%);
+  }
+
+  .contact-glow-right {
+    right: -230px;
+    bottom: 4%;
+
+    background: rgb(123 84 247 / 9%);
+  }
+
+  .contact-inner {
+    position: relative;
+  }
+
+  .contact-cta {
+    position: relative;
+
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.25fr)
+      minmax(300px, 0.75fr);
+    align-items: center;
+    gap: clamp(50px, 7vw, 100px);
+
+    min-height: 0;
+    padding:
+      clamp(28px, 3.5vw, 44px);
+
+    overflow: hidden;
+
+    border:
+      1px solid rgb(157 190 231 / 18%);
+    border-radius: 30px;
+
+    background:
+      linear-gradient(
+        115deg,
+        rgb(20 43 76 / 94%),
+        rgb(16 29 54 / 95%)
+      );
+
+    box-shadow:
+      0 35px 80px rgb(0 0 0 / 24%),
+      inset 0 1px 0 rgb(255 255 255 / 5%);
+  }
+
+  .contact-cta::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        105deg,
+        rgb(57 124 246 / 9%),
+        transparent 45%,
+        rgb(132 105 255 / 7%)
+      );
+
+    pointer-events: none;
+  }
+
+  .contact-cta-copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 19px;
+
+    color: #70aaff;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+  }
+
+  .contact-eyebrow span {
+    width: 29px;
+    height: 2px;
+
+    border-radius: 99px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #4c94ff,
+        #9178ff
+      );
+  }
+
+  .contact-cta h2 {
+    max-width: 720px;
+
+    color: #fff;
+
+    font-size:
+      clamp(36px, 3.2vw, 44px);
+    font-weight: 760;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-cta h2 span {
+    display: inline;
+
+    color: transparent;
+
+    background:
+      linear-gradient(
+        100deg,
+        #72aaff,
+        #9b78ff
+      );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .contact-description {
+    max-width: 700px;
+    margin-top: 23px;
+
+    color: #a8b8ca;
+    font-size:
+      clamp(16px, 1.25vw, 18px);
+    line-height: 1.85;
+  }
+
+  .contact-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 28px 0 0;
+    padding: 0;
+
+    color: #a9bbd0;
+    font-size: 15px;
+
+    list-style: none;
+  }
+
+  .contact-capabilities li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 13px;
+    border: 1px solid rgb(143 181 226 / 16%);
+    border-radius: 999px;
+
+    background: rgb(255 255 255 / 3%);
+  }
+
+  .contact-capabilities li::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #55a0ff;
+
+    box-shadow:
+      0 0 0 4px
+      rgb(85 160 255 / 10%);
+  }
+
+  .contact-signal {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width:
+      min(100%, 370px);
+    aspect-ratio: 1;
+
+    margin-inline: auto;
+  }
+
+  .signal-orbit {
+    position: absolute;
+
+    border:
+      1px solid rgb(112 159 225 / 18%);
+    border-radius: 50%;
+  }
+
+  .signal-orbit-one {
+    inset: 7%;
+  }
+
+  .signal-orbit-two {
+    inset: 22%;
+  }
+
+  .signal-orbit-three {
+    inset: 36%;
+  }
+
+  .signal-orbit-one::before,
+  .signal-orbit-two::before,
+  .signal-orbit-three::before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: -4px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #4f98ff;
+
+    box-shadow:
+      0 0 18px #4f98ff;
+  }
+
+  .signal-orbit-two::before {
+    top: 10%;
+    right: 17%;
+    left: auto;
+
+    background: #8b72ff;
+
+    box-shadow:
+      0 0 18px #8b72ff;
+  }
+
+  .signal-orbit-three::before {
+    top: auto;
+    right: 5%;
+    bottom: 12%;
+    left: auto;
+
+    background: #2fd9d4;
+
+    box-shadow:
+      0 0 18px #2fd9d4;
+  }
+
+  .signal-center {
+    display: grid;
+    place-items: center;
+
+    width: 78px;
+    height: 78px;
+
+    border:
+      1px solid rgb(123 174 255 / 38%);
+    border-radius: 50%;
+
+    background:
+      radial-gradient(
+        circle,
+        rgb(74 143 251 / 24%),
+        rgb(15 31 57 / 82%)
+      );
+
+    box-shadow:
+      0 0 45px rgb(53 123 243 / 22%);
+  }
+
+  .signal-center span {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #65a6ff;
+
+    box-shadow:
+      0 0 25px #65a6ff;
+  }
+
+  .contact-information {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(190px, 220px);
+    align-items: start;
+    gap: 28px;
+
+    margin-top: 24px;
+    padding: 30px 32px 32px;
+
+    border: 1px solid rgb(157 190 230 / 13%);
+    border-radius: 22px;
+
+    background: rgb(255 255 255 / 3%);
+  }
+
+  .contact-company,
+  .contact-details,
+  .wechat-card {
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .contact-company,
+  .wechat-card {
+    padding: 0;
+  }
+
+  .contact-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .contact-logo {
+    display: grid;
+    place-items: center;
+
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background: #f1f5fb;
+  }
+
+  .contact-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+  }
+
+  .contact-brand > div {
+    display: grid;
+    gap: 3px;
+  }
+
+  .contact-brand strong {
+    color: #f2f7fd;
+    font-size: 19px;
+  }
+
+  .contact-brand small {
+    color: #61758f;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+  }
+
+  .contact-company {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding-bottom: 22px;
+
+    border-bottom:
+      1px solid rgb(157 190 230 / 13%);
+  }
+
+  .contact-module-title {
+    margin: 0;
+
+    color: #8095ad;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-details {
+    display: grid;
+    grid-template-columns:
+      minmax(210px, 0.95fr)
+      minmax(330px, 1.35fr)
+      minmax(210px, 0.9fr);
+    align-items: start;
+
+    min-width: 0;
+    padding-right: 28px;
+
+    border-right:
+      1px solid rgb(157 190 230 / 13%);
+  }
+
+  .contact-detail {
+    display: flex;
+    gap: 14px;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0 22px;
+
+    border-right:
+      1px solid rgb(157 190 230 / 10%);
+    border-bottom:0;
+
+    background: transparent;
+  }
+
+  .contact-detail:first-child {
+    padding-left: 0;
+  }
+
+  .contact-detail:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .contact-address {
+    grid-column: auto;
+  }
+
+  .detail-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+
+    width: 40px;
+    height: 40px;
+
+    border:
+      1px solid rgb(89 151 247 / 20%);
+    border-radius: 11px;
+
+    background:
+      rgb(53 118 225 / 9%);
+    color: #66a5ff;
+  }
+
+  .contact-detail > div:last-child {
+    min-width: 0;
+  }
+
+  .contact-detail span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #70859e;
+    font-size: 13px;
+  }
+
+  .contact-detail strong,
+  .contact-detail a {
+    color: #dce7f4;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.65;
+
+    transition: color 180ms ease;
+  }
+
+  .contact-detail a:hover {
+    color: #70aaff;
+  }
+
+  .phone-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .wechat-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 18px;
+  }
+
+  .wechat-card-top > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .wechat-card-top small {
+    color: #627790;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .wechat-status {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #20ce71;
+
+    box-shadow:
+      0 0 0 4px
+      rgb(32 206 113 / 10%);
+  }
+
+  .wechat-code {
+    padding: 4px 8px;
+
+    border:
+      1px solid rgb(32 206 113 / 18%);
+    border-radius: 99px;
+
+    color: #41d98a;
+    font-size: 10px;
+  }
+
+  .wechat-qr-frame {
+    width: 180px;
+    max-width: 100%;
+    margin-inline: auto;
+    padding: 10px;
+
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .wechat-qr-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+
+    object-fit: contain;
+  }
+
+  .wechat-card h3 {
+    margin-top: 19px;
+
+    color: #edf5ff;
+    font-size: 18px;
+  }
+
+  .wechat-card > p {
+    margin-top: 8px;
+
+    color: #71869f;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .wechat-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 16px;
+    padding: 10px 12px;
+
+    border:
+      1px solid rgb(157 190 230 / 13%);
+    border-radius: 10px;
+
+    background: rgb(255 255 255 / 3%);
+    color: #7d92aa;
+  }
+
+  .wechat-search svg {
+    flex: none;
+
+    color: #27cf76;
+  }
+
+  .wechat-search span {
+    min-width: 0;
+    overflow: hidden;
+
+    font-size: 11px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .contact-footer {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      minmax(0, 1fr);
+    align-items: center;
+    gap: 30px;
+
+    margin-top: 58px;
+    padding: 25px 0;
+
+    border-top:
+      1px solid rgb(142 177 220 / 12%);
+  }
+
+  .footer-copyright {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    color: #536981;
+    font-size: 11px;
+  }
+
+  .copyright-divider {
+    width: 1px;
+    height: 12px;
+
+    background:
+      rgb(142 177 220 / 18%);
+  }
+
+  .footer-navigation {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .footer-navigation a,
+  .back-to-top {
+    color: #61758d;
+    font-size: 11px;
+
+    transition: color 180ms ease;
+  }
+
+  .footer-navigation a:hover,
+  .back-to-top:hover {
+    color: #fff;
+  }
+
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-self: end;
+    gap: 7px;
+  }
+
+  @media (max-width: 1080px) {
+    .contact-information {
+      grid-template-columns:
+        minmax(0, 1fr)
+        190px;
+    }
+
+    .contact-details {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 22px 24px;
+    }
+
+    .contact-detail {
+      padding: 0;
+      border-right: 0;
+    }
+
+    .contact-address {
+      grid-column: 1 / -1;
+
+      padding-bottom: 20px;
+
+      border-bottom:
+        1px solid rgb(157 190 230 / 10%);
+    }
+  }
+
+  @media (max-width: 850px) {
+    .contact-cta {
+      grid-template-columns: 1fr;
+
+      min-height: 0;
+    }
+
+    .contact-signal {
+      display: none;
+    }
+
+    .contact-footer {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .footer-navigation {
+      grid-row: 1;
+    }
+
+    .back-to-top {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .contact-company {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-information {
+      grid-template-columns: 1fr;
+      gap: 24px;
+
+      padding: 24px 20px;
+    }
+
+    .contact-details {
+      grid-template-columns: 1fr;
+
+      gap: 0;
+      padding: 0;
+
+      border-right: 0;
+    }
+
+    .contact-detail,
+    .contact-address {
+      grid-column: auto;
+
+      padding: 18px 0;
+
+      border-right: 0;
+      border-bottom:
+        1px solid rgb(157 190 230 / 10%);
+    }
+
+    .contact-detail:first-child {
+      padding-top: 0;
+    }
+
+    .contact-detail:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .wechat-card {
+      padding-top: 24px;
+
+      border-top:
+        1px solid rgb(157 190 230 / 13%);
+    }
+
+    .wechat-qr-frame {
+      max-width: 260px;
+    }
+  }
+
+  .contact-detail > div:last-child {
+    flex: 1;
+  }
+
+  .contact-person {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+  }
+
+  .contact-person-name {
+    display: flex;
+    align-items: center;
+    flex: 0 0 84px;
+    gap: 8px;
+
+    margin: 0;
+    color: #e4edf9;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.65;
+    white-space: nowrap;
+  }
+
+  .contact-detail .contact-person-name span {
+    display: inline;
+    margin: 0;
+
+    color: #8fa3ba;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .contact-person-phones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1 1 200px;
+    gap: 4px 14px;
+
+    min-width: 0;
+  }
+
+  .contact-person-phones a {
+    color: #e4edf9;
+    font-size: 15px;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+</style>
